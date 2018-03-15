@@ -129,7 +129,7 @@ export default function (parameters) {
   app.use(compression());
   
   app.use('/public', express.static(path.join(__dirname, '../public')));
-  // app.use('/static', express.static(path.resolve(__dirname, '../dist/client')));
+  app.use('/static', express.static(path.resolve(__dirname, '../dist/client')));
   // app.use(favicon(path.join(__dirname, '../public/static/favicon', 'favicon.ico')));
   
   app.get('/manifest.json', (req, res) => res.sendFile(path.join(__dirname, '../public/static/manifest/manifest.json')));
@@ -178,39 +178,45 @@ export default function (parameters) {
   
   const chunks = parameters.chunks();
 
-  app.use((req, res) => {
-    console.log('>>>>>>>>>>>>>>>> SERVER > chunks!!!!!!!!!: ', chunks);
-    res.status(200).send('SERVER > Response Ended For Testing!!!!!!! Status 200!!!!!!!!!');
-  });
+  //app.use((req, res) => {
+  //  console.log('>>>>>>>>>>>>>>>> SERVER > chunks!!!!!!!!!: ', chunks);
+  //  res.status(200).send('SERVER > Response Ended For Testing!!!!!!! Status 200!!!!!!!!!');
+  //});
 
   app.use(async (req, res) => {
+
+    console.log('>>>>>>>>>>>>>>>> SERVER > chunks!!!!!!!!!: ', chunks);
   
     console.log('>>>>>>>>>>>>>>>> SERVER > APP.USE > ASYNC !! > SetUpComponent !! START !! $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
   
     const url = req.originalUrl || req.url;
     console.log('>>>>>>>>>>>>>>>> SERVER > APP.USE > ASYNC !! > SetUpComponentDone !! > url: ', url);
   
-  
     const location = parseUrl(url);
     console.log('>>>>>>>>>>>>>>>> SERVER > APP.USE > ASYNC !! > SetUpComponentDone !! > location: ', location);
-  
   
     console.log('>>>>>>>>>>>>>>>> SERVER > APP.USE > ASYNC !! > SetUpComponent !! > apiClient !!');
     const client = apiClient(req);
     console.log('>>>>>>>>>>>>>>>> SERVER > APP.USE > ASYNC !! > SetUpComponentDone !! > apiClient !!');
   
-  
     const history = createMemoryHistory({ initialEntries: [url] });
     console.log('>>>>>>>>>>>>>>>> SERVER > APP.USE > ASYNC !! > SetUpComponentDone !! > createMemoryHistory !!');
-  
   
     console.log('>>>>>>>>>>>>>>>> SERVER > APP.USE > ASYNC !! > SetUpComponent !! > createStore !!');
     const store = createStore(history, client);
     console.log('>>>>>>>>>>>>>>>> SERVER > APP.USE > ASYNC !! > SetUpComponentDone !! > createStore !!');
   
-  
     console.log('>>>>>>>>>>>>>>>> SERVER > APP.USE > ASYNC !! > SetUpComponent !! END !! $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
   
+    const hydrate = () => {
+      res.write('<!doctype html>');
+      ReactDOM.renderToNodeStream(<Html assets={chunks} store={store} />).pipe(res);
+    };
+
+    if (__DISABLE_SSR__) {
+      return hydrate();
+    }
+
     try {
       console.log('>>>>>>>>>>>>>>>>> SERVER > $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ loadOnServer START $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
   
@@ -234,7 +240,7 @@ export default function (parameters) {
         return res.redirect(302, context.url);
       }
   
-      const html = <Html assets={global.webpackIsomorphicTools.assets()} content={content} store={store} />;
+      const html = <Html assets={chunks} content={content} store={store} />;
   
       console.log('>>>>>>>>>>>>>>>> SERVER > APP.USE > ASYNC !! > DID IT !! HTML <<<<<<<<<<<<<<<<<<');
   
