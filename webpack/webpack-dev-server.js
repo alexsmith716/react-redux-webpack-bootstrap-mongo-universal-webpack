@@ -7,6 +7,8 @@ import webpack_hot_middleware from 'webpack-hot-middleware';
 import configuration from './webpack.config.client.development';
 import application_configuration from '../configuration';
 
+console.log('>>>>>>>>>>>>>>>> webpack-dev-server.js <<<<<<<<<<<<<<<<<<')
+
 const compiler = webpack(configuration);
 const devserver = new express();
 
@@ -35,5 +37,5 @@ devserver.listen(application_configuration.webpack.devserver.port, (error) => {
     console.error(error.stack || error)
     throw error
   }
-  console.log('[webpack-dev-server] Running')
+  console.log('>>>>>>>>>>>>>>>> webpack-dev-server.js > Running !!!!!!! <<<<<<<<<<<<<<<<<<')
 });

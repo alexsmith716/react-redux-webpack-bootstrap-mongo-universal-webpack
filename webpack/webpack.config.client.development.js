@@ -16,8 +16,7 @@ console.log('>>>>>> webpack.config.client.development.js > configuration.entry.m
 configuration.plugins.push(
   // Environment variables
   new webpack.DefinePlugin({
-    'process.env':
-    {
+    'process.env': {
       NODE_ENV  : JSON.stringify('development'),
       BABEL_ENV : JSON.stringify('development/client')
     },
@@ -39,18 +38,20 @@ configuration.plugins.push(
 // >>>> configuration.entry.main.length:  6
 // >>>> configuration.entry.main[0]:  eventsource-polyfill
 
-//if (configuration.entry.main.length !== 2 && configuration.entry.main[0] !== 'babel-polyfill') {
-//  throw new Error('Unexpected `main` webpack entry point detected')
-//}
+if (configuration.entry.main.length !== 3 && configuration.entry.main[0] !== 'babel-polyfill') {
+  throw new Error('Unexpected `main` webpack entry point detected')
+}
 
 configuration.entry.main = [
   `webpack-hot-middleware/client?path=http://${application_configuration.webpack.devserver.host}:${application_configuration.webpack.devserver.port}/__webpack_hmr`,
   'babel-polyfill',
   'react-hot-loader/patch',
-  configuration.entry.main[1]
+  configuration.entry.main[2]
 ]
 
 // network path for static files: fetch all statics from webpack development server
 configuration.output.publicPath = `http://${application_configuration.webpack.devserver.host}:${application_configuration.webpack.devserver.port}${configuration.output.publicPath}`
+
+console.log('>>>>>> webpack.config.client.development.js > CONFIGURATION !!!!!!: ', configuration);
 
 export default configuration;

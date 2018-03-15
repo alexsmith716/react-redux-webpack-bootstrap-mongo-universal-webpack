@@ -1,4 +1,3 @@
-import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import createBrowserHistory from 'history/createBrowserHistory';
@@ -21,6 +20,8 @@ const offlinePersistConfig = {
 
 const client = apiClient();
 const dest = document.getElementById('content');
+
+console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT.JS <<<<<<<<<<<<<<<<<<<<<<<<<<<');
 
 (async () => {
   const storedData = await getStoredState(offlinePersistConfig);
