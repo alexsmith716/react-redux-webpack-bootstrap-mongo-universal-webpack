@@ -69,11 +69,17 @@ mongoose.connect(dbURL, mongooseOptions, err => {
 
 // #########################################################################
 
+// import testingNodeLoadProcess3 from './testingNodeLoad/testingNodeLoadProcess3';
+// import testingNodeLoadProcess4 from './testingNodeLoad/testingNodeLoadProcess4';
+// import testingNodeLoadProcess2 from './testingNodeLoad/testingNodeLoadProcess2';
+
+// #########################################################################
+
 // GLOBAL constants ++++++++++++++++++++++++++++++++++++++++++++
-// global.__CLIENT__ = false;
-// global.__SERVER__ = true;
-// global.__DISABLE_SSR__ = false;
-// global.__DEVELOPMENT__ = process.env.NODE_ENV !== 'production';
+global.__CLIENT__ = false;
+global.__SERVER__ = true;
+global.__DISABLE_SSR__ = false;
+global.__DEVELOPMENT__ = process.env.NODE_ENV !== 'production';
 
 // #########################################################################
 
@@ -99,9 +105,6 @@ export default function (parameters) {
   
   app.use((req, res, next) => {
     console.log('>>>>>>>>>>>>>>>>> SERVER > $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ IN $$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
-    console.log('>>>>>>>>>>>>>>>>> SERVER > __CLIENT__: ', __CLIENT__);
-    console.log('>>>>>>>>>>>>>>>>> SERVER > __SERVER__: ', __SERVER__);
-    console.log('>>>>>>>>>>>>>>>>> SERVER > __DEVELOPMENT__: ', __DEVELOPMENT__);
     console.log('>>>>>>>>>>>>>>>>> SERVER > REQ.ip +++++++++: ', req.ip);
     console.log('>>>>>>>>>>>>>>>>> SERVER > REQ.method +++++: ', req.method);
     console.log('>>>>>>>>>>>>>>>>> SERVER > REQ.url ++++++++: ', req.url);
@@ -117,14 +120,6 @@ export default function (parameters) {
   
   // #########################################################################
   
-  //if (process.env.NODE_ENV === 'development') {
-  //  const compiler = webpack(webpackConfig);
-  //  app.use(webpackDevMiddleware(compiler, { noInfo: false, publicPath: webpackConfig.output.publicPath }));
-  //  app.use(webpackHotMiddleware(compiler));
-  //}
-  
-  // #########################################################################
-  
   if (process.env.NODE_ENV === 'development') {
     //app.use(delay(200, 300));
   }
@@ -134,7 +129,7 @@ export default function (parameters) {
   app.use(compression());
   
   app.use('/public', express.static(path.join(__dirname, '../public')));
-  //app.use('/static', express.static(path.resolve(__dirname, '../dist/client')));
+  // app.use('/static', express.static(path.resolve(__dirname, '../dist/client')));
   // app.use(favicon(path.join(__dirname, '../public/static/favicon', 'favicon.ico')));
   
   app.get('/manifest.json', (req, res) => res.sendFile(path.join(__dirname, '../public/static/manifest/manifest.json')));
@@ -187,11 +182,6 @@ export default function (parameters) {
   // });
   
   app.use(async (req, res) => {
-  
-    console.log('>>>>>>>>>>>>>>>> SERVER > APP.USE > ASYNC !! <<<<<<<<<<<<<<<<<<');
-    if (__DEVELOPMENT__) {
-      // ========
-    }
   
     console.log('>>>>>>>>>>>>>>>> SERVER > APP.USE > ASYNC !! > SetUpComponent !! START !! $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
   

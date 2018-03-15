@@ -34,9 +34,6 @@ module.exports = {
 
   entry: {
     main: [
-      'eventsource-polyfill',
-      'webpack-hot-middleware/client?reload=true',
-      'react-hot-loader/patch',
       'babel-polyfill',
       './client/assets/scss/global.scss',
       './client/index.entry.js',
