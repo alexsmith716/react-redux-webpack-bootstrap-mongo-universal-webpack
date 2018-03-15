@@ -17,10 +17,15 @@ configuration.plugins.push(
   // Environment variables
   new webpack.DefinePlugin({
     'process.env': {
+      CLIENT: JSON.stringify(true),
       NODE_ENV  : JSON.stringify('development'),
       BABEL_ENV : JSON.stringify('development/client')
     },
-    REDUX_DEVTOOLS : false  // enable/disable redux-devtools
+    REDUX_DEVTOOLS : false,
+    __CLIENT__: true,
+    __SERVER__: false,
+    __DEVELOPMENT__: true,
+    __DEVTOOLS__: true,
   }),
 
   // Webpack Hot Reload

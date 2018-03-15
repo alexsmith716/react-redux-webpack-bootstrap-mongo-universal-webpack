@@ -162,7 +162,6 @@ export default function (parameters) {
     })
   }));
   
-  
   app.use((req, res, next) => {
     console.log('>>>>>>>>>>>>>>>> SERVER > REQ.headers ++++  111z: ', req.headers);
     console.log('>>>>>>>>>>>>>>>> SERVER > REQ.session ++++  111z: ', req.session);
@@ -177,14 +176,16 @@ export default function (parameters) {
   
   // #########################################################################
   
-  // app.use((req, res) => {
-    // res.status(200).send('SERVER > Response Ended For Testing!!!!!!! Status 200!!!!!!!!!');
-  // });
-  
+  const chunks = parameters.chunks();
+
+  app.use((req, res) => {
+    console.log('>>>>>>>>>>>>>>>> SERVER > chunks!!!!!!!!!: ', chunks);
+    res.status(200).send('SERVER > Response Ended For Testing!!!!!!! Status 200!!!!!!!!!');
+  });
+
   app.use(async (req, res) => {
   
     console.log('>>>>>>>>>>>>>>>> SERVER > APP.USE > ASYNC !! > SetUpComponent !! START !! $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
-  
   
     const url = req.originalUrl || req.url;
     console.log('>>>>>>>>>>>>>>>> SERVER > APP.USE > ASYNC !! > SetUpComponentDone !! > url: ', url);
