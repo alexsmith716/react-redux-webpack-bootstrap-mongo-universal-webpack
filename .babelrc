@@ -1,12 +1,9 @@
 {
   "presets": [
     "react",
-    ["env", { 
-      "targets": {
-        "browsers": ["last 2 versions", "IE >= 8", "safari >= 7"],
-        "node": "current"
-      },
-    }],
+    [
+      "env", 
+    ],
     "stage-0",
   ],
   "plugins": [

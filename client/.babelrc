@@ -1,0 +1,25 @@
+{
+  "presets": [
+    "react",
+    ["env", { 
+      "targets": {
+        "browsers": ["last 2 versions", "IE >= 8", "safari >= 7"],
+        "node": "current"
+      },
+      "modules": false,
+    }],
+    "stage-0",
+  ],
+  "plugins": [
+    "transform-object-rest-spread",
+    "transform-class-properties",
+    "transform-promise-to-bluebird",
+    "transform-decorators-legacy",
+    "transform-react-display-name",
+    "transform-regenerator",
+    "transform-runtime",
+    "add-module-exports",
+    "transform-es2015-modules-commonjs",
+    "react-hot-loader/babel"
+  ],
+}

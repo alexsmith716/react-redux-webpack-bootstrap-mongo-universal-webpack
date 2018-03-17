@@ -4,7 +4,8 @@ var webpack = require('webpack');
 var tether = require('tether');
 
 var rootPath = path.resolve(__dirname, '..');
-var assetsPath = path.resolve(rootPath, 'public', 'build', 'client');
+// var assetsPath = path.resolve(rootPath, 'public', 'build', 'client');
+// var assetsPath = path.resolve(rootPath, 'public', 'build', 'assets');
 
 /*
 optimization: {
@@ -25,17 +26,15 @@ optimization: {
   },
 },
 */
+//       './client/assets/scss/global.scss',
 
 module.exports = {
-
-  mode: 'development',
 
   context: rootPath,
 
   entry: {
     main: [
       'babel-polyfill',
-      './client/assets/scss/global.scss',
       './client/index.entry.js',
     ],
     vendor: [
@@ -52,8 +51,8 @@ module.exports = {
   },
 
   output: {
-    path: assetsPath,
-    publicPath: '/build/client/',
+    path: path.resolve(rootPath, 'build/assets'),
+    publicPath: '/assets/',
     filename: '[name].[hash].js',
     chunkFilename: '[name].[hash].js'
   },
@@ -80,68 +79,53 @@ module.exports = {
         ],
       },
       {
-        test: /\.scss$/,
-        include: [ path.resolve(rootPath, 'client/assets/scss') ],
-        use: [
+        test: /\.(scss)$/,
+        use:
+        [{
+          loader: 'style-loader'
+        },
+        {
+          loader : 'css-loader',
+          options:
           {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              modules: false,
-            }
-          },
-          {
-            loader: 'resolve-url-loader',
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: true,
-            }
+            importLoaders : 2,
+            sourceMap     : true
           }
-        ]
+        },
+        {
+          loader : 'postcss-loader',
+          options:
+          {
+            sourceMap : true
+          }
+        },
+        {
+          loader : 'sass-loader',
+          options:
+          {
+            outputStyle       : 'expanded',
+            sourceMap         : true,
+            sourceMapContents : true
+          }
+        }]
       },
       {
-        test: /\.scss$/,
-        exclude: [ path.resolve(rootPath, 'client/assets/scss') ],
-        use: [
+        test: /\.(css)$/,
+        use:
+        [{
+          loader: 'style-loader'
+        },
+        {
+          loader : 'css-loader',
+          options:
           {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              localIdentName: '[name]__[local]__[hash:base64:5]',
-            }
-          },
-          {
-            loader: 'postcss-loader',
-          },
-          {
-            loader: 'sass-loader',
+            importLoaders : 2,
+            sourceMap     : true
           }
-        ]
-      },
-      {
-        test: /\.css$/,
-        use: [
-          {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              localIdentName: '[name]__[local]__[hash:base64:5]',
-            }
-          },
-          {
-            loader: 'postcss-loader',
-          },
-        ]
+        },
+        {
+          loader : 'postcss-loader'
+        }]
       },
       {
         test: /\.(jpg|jpeg|gif|png|svg)$/i,

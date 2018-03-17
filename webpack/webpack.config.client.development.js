@@ -3,6 +3,9 @@ import base_configuration from './webpack.config.client';
 import application_configuration from '../configuration';
 
 const configuration = base_configuration({ development: true, cssBundle: true });
+const path = require('path');
+
+const project_folder = path.resolve(__dirname, '..');
 
 // https://webpack.js.org/guides/development/#source-maps
 // The default `source-map` `devtool` gives better
@@ -12,6 +15,10 @@ const configuration = base_configuration({ development: true, cssBundle: true })
 console.log('>>>>>> webpack.config.client.development.js > configuration.entry: ', configuration.entry);
 console.log('>>>>>> webpack.config.client.development.js > configuration.entry.main.length: ', configuration.entry.main.length);
 console.log('>>>>>> webpack.config.client.development.js > configuration.entry.main[0]: ', configuration.entry.main[0]);
+console.log('>>>>>> webpack.config.client.development.js > configuration.entry.main[1]: ', configuration.entry.main[1]);
+console.log('>>>>>> webpack.config.client.development.js > configuration.entry.main[2]: ', configuration.entry.main[2]);
+
+configuration.mode = 'development',
 
 configuration.plugins.push(
   // Environment variables
@@ -21,7 +28,7 @@ configuration.plugins.push(
       NODE_ENV  : JSON.stringify('development'),
       BABEL_ENV : JSON.stringify('development/client')
     },
-    REDUX_DEVTOOLS : false,
+    REDUX_DEVTOOLS : true,
     __CLIENT__: true,
     __SERVER__: false,
     __DEVELOPMENT__: true,
@@ -43,19 +50,23 @@ configuration.plugins.push(
 // >>>> configuration.entry.main.length:  6
 // >>>> configuration.entry.main[0]:  eventsource-polyfill
 
-if (configuration.entry.main.length !== 3 && configuration.entry.main[0] !== 'babel-polyfill') {
+if (configuration.entry.main.length !== 2 && configuration.entry.main[0] !== 'babel-polyfill') {
   throw new Error('Unexpected `main` webpack entry point detected')
 }
 
 configuration.entry.main = [
   `webpack-hot-middleware/client?path=http://${application_configuration.webpack.devserver.host}:${application_configuration.webpack.devserver.port}/__webpack_hmr`,
   'babel-polyfill',
-  'react-hot-loader/patch',
-  configuration.entry.main[2]
+  path.resolve(project_folder, 'client/assets/scss/global.scss'),
+  configuration.entry.main[1]
 ]
 
 // network path for static files: fetch all statics from webpack development server
 configuration.output.publicPath = `http://${application_configuration.webpack.devserver.host}:${application_configuration.webpack.devserver.port}${configuration.output.publicPath}`
+
+//configuration.optimization.splitChunks.chunks = 'all';
+//configuration.optimization.splitChunks.minSize = 0;
+//configuration.optimization.occurrenceOrder = true;
 
 console.log('>>>>>> webpack.config.client.development.js > CONFIGURATION !!!!!!: ', configuration);
 
