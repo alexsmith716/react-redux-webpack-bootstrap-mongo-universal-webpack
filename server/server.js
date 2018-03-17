@@ -76,14 +76,14 @@ mongoose.connect(dbURL, mongooseOptions, err => {
 // #########################################################################
 
 // GLOBAL constants ++++++++++++++++++++++++++++++++++++++++++++
-global.__CLIENT__ = false;
-global.__SERVER__ = true;
-global.__DISABLE_SSR__ = false;
-global.__DEVELOPMENT__ = process.env.NODE_ENV !== 'production';
+// global.__CLIENT__ = false;
+// global.__SERVER__ = true;
+// global.__DISABLE_SSR__ = false;
+// global.__DEVELOPMENT__ = process.env.NODE_ENV !== 'production';
 
 // #########################################################################
 
-dotenv.config();
+// dotenv.config();
 
 // #########################################################################
 
@@ -128,8 +128,8 @@ export default function (parameters) {
   
   app.use(compression());
   
-  app.use('/public', express.static(path.join(__dirname, '../public')));
-  app.use('/static', express.static(path.resolve(__dirname, '../dist/client')));
+  // app.use('/public', express.static(path.join(__dirname, '../public')));
+  app.use('/assets', express.static(path.join(__dirname, '../build/assets')));
   // app.use(favicon(path.join(__dirname, '../public/static/favicon', 'favicon.ico')));
   
   app.get('/manifest.json', (req, res) => res.sendFile(path.join(__dirname, '../public/static/manifest/manifest.json')));
@@ -185,7 +185,7 @@ export default function (parameters) {
 
   app.use(async (req, res) => {
 
-    console.log('>>>>>>>>>>>>>>>> SERVER > chunks!!!!!!!!!: ', chunks);
+    console.log('>>>>>>>>>>>>>>>> SERVER > CHUNKS !!!!!!!!!: ', chunks);
   
     console.log('>>>>>>>>>>>>>>>> SERVER > APP.USE > ASYNC !! > SetUpComponent !! START !! $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
   

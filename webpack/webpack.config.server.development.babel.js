@@ -1,13 +1,15 @@
-import cloneDeep from 'lodash/cloneDeep';
+import cloneDeep from 'lodash/cloneDeep'
 
-import configuration from './webpack.config.server';
-import settings from '../configuration';
+import configuration from './webpack.config.server'
+import settings from '../configuration'
 
-export default
-{
+export default {
+
   ...configuration,
-  output:
-  {
+
+  mode: 'development',
+
+  output: {
     ...configuration.output,
     // Get all statics from webpack development server
     publicPath: `http://${settings.webpack.devserver.host}:${settings.webpack.devserver.port}${configuration.output.publicPath}`

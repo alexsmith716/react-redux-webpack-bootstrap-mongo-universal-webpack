@@ -13,6 +13,8 @@ import apiClient from '../server/helpers/apiClient';
 import routes from './routes';
 import isOnline from '../server/utils/isOnline';
 
+// import './assets/scss/global.scss';
+
 const offlinePersistConfig = {
   storage: localForage,
   whitelist: ['auth', 'info']
