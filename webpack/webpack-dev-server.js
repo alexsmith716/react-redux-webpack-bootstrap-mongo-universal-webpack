@@ -32,10 +32,18 @@ devserver.use(webpack_dev_middleware(compiler, {
 
 devserver.use(webpack_hot_middleware(compiler));
 
-devserver.listen(application_configuration.webpack.devserver.port, (error) => {
+const server = devserver.listen(application_configuration.webpack.devserver.port, (error) => {
   if (error) {
     console.error(error.stack || error)
     throw error
   }
-  console.log('>>>>>>>>>>>>>>>> webpack-dev-server.js > Running !!!!!!! <<<<<<<<<<<<<<<<<<')
+  console.log('>>>>>>>>>>>>>>>> webpack-dev-server.js > Express server Connected: ', server.address());
+});
+
+server.on('listening', () => {
+  var addr = server.address();
+  var bind = typeof addr === 'string'
+    ? 'pipe ' + addr
+    : 'port ' + addr.port;
+  console.log('>>>>>>>>>>>>>>>> webpack-dev-server.js > Express server Listening on: ', bind);
 });

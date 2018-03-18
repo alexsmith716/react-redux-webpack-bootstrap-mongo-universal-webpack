@@ -83,7 +83,7 @@ mongoose.connect(dbURL, mongooseOptions, err => {
 
 // #########################################################################
 
-// dotenv.config();
+dotenv.config();
 
 // #########################################################################
 
@@ -102,7 +102,7 @@ process.on('unhandledRejection', (error, promise) => {
 export default function (parameters) {
 
   const app = new express();
-  
+
   app.use((req, res, next) => {
     console.log('>>>>>>>>>>>>>>>>> SERVER > $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ IN $$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
     console.log('>>>>>>>>>>>>>>>>> SERVER > REQ.ip +++++++++: ', req.ip);
@@ -110,6 +110,7 @@ export default function (parameters) {
     console.log('>>>>>>>>>>>>>>>>> SERVER > REQ.url ++++++++: ', req.url);
     console.log('>>>>>>>>>>>>>>>>> SERVER > REQ.headers ++++: ', req.headers);
     console.log('>>>>>>>>>>>>>>>>> SERVER > REQ.session ++++: ', req.session);
+    console.log('>>>>>>>>>>>>>>>>> SERVER > process.env.SESSION_SECRET ++++: ', process.env.SESSION_SECRET);
     return next();
   });
   
@@ -153,7 +154,8 @@ export default function (parameters) {
   
   // app.use(/\/api/, session({
   app.use(session({
-    secret: process.env.SESSION_SECRET,
+    // secret: process.env.SESSION_SECRET,
+    secret: 'keyboardcat123abz',
     resave: false,
     saveUninitialized: false,
     store: new MongoStore({
@@ -178,10 +180,10 @@ export default function (parameters) {
   
   const chunks = parameters.chunks();
 
-  //app.use((req, res) => {
-  //  console.log('>>>>>>>>>>>>>>>> SERVER > chunks!!!!!!!!!: ', chunks);
-  //  res.status(200).send('SERVER > Response Ended For Testing!!!!!!! Status 200!!!!!!!!!');
-  //});
+  // app.use((req, res) => {
+  //   console.log('>>>>>>>>>>>>>>>> SERVER > chunks!!!!!!!!!: ', chunks);
+  //   res.status(200).send('SERVER > Response Ended For Testing!!!!!!! Status 200!!!!!!!!!');
+  // });
 
   app.use(async (req, res) => {
 
@@ -254,19 +256,8 @@ export default function (parameters) {
       hydrate();
     }
   });
-  
+
   // #########################################################################
-  
-  /*
-  const server = new http.Server(app);
-  server.listen(process.env.PORT, err => {
-    if (err) {
-      console.error(err);
-    }
-    console.info('----\n==> SERVER is running, talking to API server on.');
-    console.info('==> Open http:// in a browser to view the app.');
-  });
-  */
   
   const normalizePort = (val)  => {
   
@@ -285,19 +276,20 @@ export default function (parameters) {
     return false;
   };
   
-  const port = normalizePort(process.env.PORT || serverConfig.port);
+  // const port = normalizePort(process.env.PORT || serverConfig.port);
+  const port = 3000;
   app.set('port', port);
   
   // http.createServer([requestListener]): Returns a new instance of http.Server
   // const server = https.createServer(options, app).listen(app.get('port'), '', () => {
   const server = http.createServer(app).listen( app.get('port'), serverConfig.host, () => {
-    console.log('>>>>>> Express server Connected: ', server.address());
+    console.log('>>>>>>>>>>>>>>>> server.js > Express server Connected: ', server.address());
   });
   
   server.on('error', (err) => {
   
     if (err.syscall !== 'listen') {
-      console.log('>>>>>> Express server error: ', err);
+      console.log('>>>>>>>>>>>>>>>> server.js > Express server error: ', err);
     }
   
     var bind = typeof port === 'string'
@@ -306,15 +298,15 @@ export default function (parameters) {
   
     switch (err.code) {
       case 'EACCES':
-        console.error('>>>>>> Express server error: ' + bind + ' requires elevated privileges');
+        console.log('>>>>>>>>>>>>>>>> server.js > Express server error: ' + bind + ' requires elevated privileges');
         process.exit(1);
         break;
       case 'EADDRINUSE':
-        console.error('>>>>>> Express server error: ' + bind + ' is already in use');
+        console.log('>>>>>>>>>>>>>>>> server.js > Express server error: ' + bind + ' is already in use');
         process.exit(1);
         break;
       default:
-        console.log('>>>>>> Express server error.code: ', err.code);
+        console.log('>>>>>>>>>>>>>>>> server.js > Express server error.code: ', err.code);
     }
   });
   
@@ -323,13 +315,13 @@ export default function (parameters) {
     var bind = typeof addr === 'string'
       ? 'pipe ' + addr
       : 'port ' + addr.port;
-    console.log('>>>>>> Express server Listening on: ', bind);
+    console.log('>>>>>>>>>>>>>>>> server.js > Express server Listening on: ', bind);
   });
   
   // https://nodejs.org/api/net.html#net_class_net_socket
   // https://nodejs.org/api/http.html#http_event_upgrade
   server.on('upgrade', (req, socket, head) => {
-    console.log('>>>>>>>>>>>>>>>> SERVER > APP.USE > Upgrade <<<<<<<<<<<<<<<<<<<<<<');
+    console.log('>>>>>>>>>>>>>>>> server.js > Express server Upgrade <<<<<<<<<<<<<<<<');
     // proxy.ws(req, socket, head);
   });
 

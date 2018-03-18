@@ -80,52 +80,67 @@ module.exports = {
       },
       {
         test: /\.(scss)$/,
-        use:
-        [{
-          loader: 'style-loader'
-        },
-        {
-          loader : 'css-loader',
-          options:
+        include: [ path.resolve(rootPath, 'client/assets/scss') ],
+        use: [
           {
-            importLoaders : 2,
-            sourceMap     : true
-          }
-        },
-        {
-          loader : 'postcss-loader',
-          options:
+            loader: 'style-loader',
+          },
           {
-            sourceMap : true
-          }
-        },
-        {
-          loader : 'sass-loader',
-          options:
+            loader: 'css-loader',
+            options: {
+              modules: false,
+            }
+          },
           {
-            outputStyle       : 'expanded',
-            sourceMap         : true,
-            sourceMapContents : true
+            loader: 'resolve-url-loader',
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+            }
           }
-        }]
+        ]
+      },
+      {
+        test: /\.(scss)$/,
+        exclude: [ path.resolve(rootPath, 'client/assets/scss') ],
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              localIdentName: '[name]__[local]__[hash:base64:5]',
+            }
+          },
+          {
+            loader: 'postcss-loader',
+          },
+          {
+            loader: 'sass-loader',
+          }
+        ]
       },
       {
         test: /\.(css)$/,
-        use:
-        [{
-          loader: 'style-loader'
-        },
-        {
-          loader : 'css-loader',
-          options:
+        use: [
           {
-            importLoaders : 2,
-            sourceMap     : true
-          }
-        },
-        {
-          loader : 'postcss-loader'
-        }]
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              localIdentName: '[name]__[local]__[hash:base64:5]',
+            }
+          },
+          {
+            loader: 'postcss-loader',
+          },
+        ]
       },
       {
         test: /\.(jpg|jpeg|gif|png|svg)$/i,

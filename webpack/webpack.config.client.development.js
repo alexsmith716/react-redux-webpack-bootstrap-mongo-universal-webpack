@@ -16,7 +16,6 @@ console.log('>>>>>> webpack.config.client.development.js > configuration.entry: 
 console.log('>>>>>> webpack.config.client.development.js > configuration.entry.main.length: ', configuration.entry.main.length);
 console.log('>>>>>> webpack.config.client.development.js > configuration.entry.main[0]: ', configuration.entry.main[0]);
 console.log('>>>>>> webpack.config.client.development.js > configuration.entry.main[1]: ', configuration.entry.main[1]);
-console.log('>>>>>> webpack.config.client.development.js > configuration.entry.main[2]: ', configuration.entry.main[2]);
 
 configuration.mode = 'development',
 
