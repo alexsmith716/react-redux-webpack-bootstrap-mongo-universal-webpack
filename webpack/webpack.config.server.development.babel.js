@@ -1,17 +1,32 @@
-import cloneDeep from 'lodash/cloneDeep'
+import webpack from 'webpack';
+import baseConfiguration from './webpack.config.server';
 
-import configuration from './webpack.config.server'
 import settings from '../configuration'
 
-export default {
+const configuration = Object.assign({}, baseConfiguration);
 
-  ...configuration,
+const publicPath = configuration.output.publicPath;
 
-  mode: 'development',
+configuration.mode = 'development',
 
-  output: {
-    ...configuration.output,
-    // Get all statics from webpack development server
-    publicPath: `http://${settings.webpack.devserver.host}:${settings.webpack.devserver.port}${configuration.output.publicPath}`
-  }
-}
+configuration.output.publicPath = `http://${settings.webpack.devserver.host}:${settings.webpack.devserver.port}${configuration.output.publicPath}`;
+
+configuration.plugins = configuration.plugins.concat(
+    new webpack.IgnorePlugin(/\/iconv-loader$/),
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    // new webpack.NamedModulesPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        CLIENT: JSON.stringify(false),
+        NODE_ENV  : JSON.stringify('development'),
+        BABEL_ENV : JSON.stringify('development/server')
+      },
+      REDUX_DEVTOOLS : false,
+      __CLIENT__: false,
+      __SERVER__: true,
+      __DEVELOPMENT__: true,
+      __DEVTOOLS__: false,
+    }),
+);
+
+export default configuration;
