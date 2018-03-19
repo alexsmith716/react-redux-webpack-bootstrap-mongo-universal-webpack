@@ -11,6 +11,8 @@ configuration.mode = 'development',
 
 configuration.output.publicPath = `http://${settings.webpack.devserver.host}:${settings.webpack.devserver.port}${configuration.output.publicPath}`;
 
+console.log('>>>>>> webpack.config.server.development.babel.js > configuration.output.publicPath: ', configuration.output.publicPath);
+
 configuration.plugins = configuration.plugins.concat(
     new webpack.IgnorePlugin(/\/iconv-loader$/),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),

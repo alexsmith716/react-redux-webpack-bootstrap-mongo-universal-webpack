@@ -11,6 +11,13 @@ import { isAuthLoaded, loadAuth, logout } from '../../redux/modules/auth';
 import Notifs from '../../components/Notifs/Notifs';
 import config from '../../../server/config';
 
+//import './App.scss';
+//import './styles.css';
+import style1 from './App.scss';
+import style2 from './styles.css';
+// className={`fa fa-headphones ${colorPurple}`}
+// <div className={coloredText3}>
+
 @asyncConnect([
   {
     promise: async ({ store: { dispatch, getState } }) => {
@@ -94,7 +101,7 @@ export default class App extends Component {
                 <a className="nav-link disabled" href="#">Disabled</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#"><span className="fa fa-headphones"/>Headphones!</a>
+                <a className="nav-link" href="#"><span className={`fa fa-headphones ${style1.colorGold}`}>Headphones!!!</span></a>
               </li>
             </ul>
             <form className="form-inline mt-2 mt-md-0">
@@ -115,7 +122,7 @@ export default class App extends Component {
           )}
           {renderRoutes(route.routes)}
         </div>
-        <div>
+        <div className={style2.colorPurple}>
           Copyright © 2018 · Election App 2018!
         </div>
 

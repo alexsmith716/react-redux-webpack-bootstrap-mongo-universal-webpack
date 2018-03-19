@@ -243,15 +243,17 @@ export default function (parameters) {
       }
   
       const html = <Html assets={chunks} content={content} store={store} />;
+
+      console.log('>>>>>>>>>>>>>>>> SERVER > APP.USE > ASYNC !! > html: ', html);
   
       console.log('>>>>>>>>>>>>>>>> SERVER > APP.USE > ASYNC !! > DID IT !! HTML <<<<<<<<<<<<<<<<<<');
   
       res.status(200).send(`<!doctype html>${ReactDOM.renderToString(html)}`);
     } catch (error) {
+      console.log('>>>>>>>>>>>>>>>> SERVER > APP.USE > ASYNC !! > TRY > ERROR > error: ', error);
       if (error.name === 'RedirectError') {
         return res.redirect(VError.info(error).to);
       }
-      console.error('MOUNT ERROR:', pretty.render(error));
       res.status(500);
       hydrate();
     }

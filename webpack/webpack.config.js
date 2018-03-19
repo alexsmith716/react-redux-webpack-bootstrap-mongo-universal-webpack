@@ -54,7 +54,8 @@ module.exports = {
     path: path.resolve(rootPath, 'build/assets'),
     publicPath: '/assets/',
     filename: '[name].[hash].js',
-    chunkFilename: '[name].[hash].js'
+    chunkFilename: '[name].[hash].js',
+    // chunkFilename: '[name].[chunkhash].js',
   },
 
   optimization: {
@@ -186,11 +187,16 @@ module.exports = {
     ]
   },
 
+  //resolve: {
+  //  modules: [
+  //    path.resolve(rootPath, 'client'),
+  //    path.resolve('node_modules')
+  //  ],
+  //},
+
   resolve: {
-    modules: [
-      path.resolve(rootPath, 'client'),
-      path.resolve('node_modules')
-    ],
+    modules: ['client', 'node_modules'],
+    extensions: ['.js', '.jsx', '.scss', '.css', '.json',],
   },
 
   plugins: []
