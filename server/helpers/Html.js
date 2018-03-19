@@ -43,7 +43,7 @@ const Html = props => {
           />
         )}
         {Object.keys(assets.javascript)
-          .filter(key => key.includes('app') || key.includes('vendor'))
+          .filter(key => key.includes('main') || key.includes('vendor'))
           .reverse()
           .map(key => <script key={key} src={assets.javascript[key]} />)}
 
