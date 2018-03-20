@@ -15,8 +15,6 @@ import config from '../../../server/config';
 //import './styles.css';
 import style1 from './App.scss';
 import style2 from './styles.css';
-// className={`fa fa-headphones ${colorPurple}`}
-// <div className={coloredText3}>
 
 @asyncConnect([
   {

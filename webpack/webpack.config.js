@@ -59,10 +59,10 @@ module.exports = {
   },
 
   optimization: {
-    splitChunks: {
-      chunks: 'all',
-      minSize: 0,
-    },
+    //splitChunks: {
+    //  chunks: 'all',
+    //  minSize: 0,
+    //},
     occurrenceOrder: true
   },
 
