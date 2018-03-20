@@ -33,6 +33,11 @@ const Html = props => {
 
         {/* (>>>>>>> SCRIPT <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<) */}
         {head.script.toComponent()}
+
+        {/* (will be present only in development mode) */}
+        {assets.styles && Object.keys(assets.styles).length === 0 ? (
+          <style dangerouslySetInnerHTML={{ __html: '#content{display:none}' }} />
+        ) : null}
       </head>
       <body>
         <div id="content" dangerouslySetInnerHTML={{ __html: content }} ></div>
@@ -47,9 +52,6 @@ const Html = props => {
           .reverse()
           .map(key => <script key={key} src={assets.javascript[key]} />)}
 
-        {assets.styles && Object.keys(assets.styles).length === 0 ? (
-          <script dangerouslySetInnerHTML={{ __html: 'document.getElementById("content").style.display="block";' }} />
-        ) : null}
       </body>
     </html>
   );

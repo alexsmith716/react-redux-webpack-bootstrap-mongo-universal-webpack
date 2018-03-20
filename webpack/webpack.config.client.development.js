@@ -12,10 +12,10 @@ const project_folder = path.resolve(__dirname, '..');
 // source maps in Chrome (as per user reports in 2017).
 // configuration.devtool = 'cheap-eval-source-map'
 
-console.log('>>>>>> webpack.config.client.development.js > configuration.entry: ', configuration.entry);
-console.log('>>>>>> webpack.config.client.development.js > configuration.entry.main.length: ', configuration.entry.main.length);
-console.log('>>>>>> webpack.config.client.development.js > configuration.entry.main[0]: ', configuration.entry.main[0]);
-console.log('>>>>>> webpack.config.client.development.js > configuration.entry.main[1]: ', configuration.entry.main[1]);
+// console.log('>>>>>> webpack.config.client.development.js > configuration.entry: ', configuration.entry);
+// console.log('>>>>>> webpack.config.client.development.js > configuration.entry.main.length: ', configuration.entry.main.length);
+// console.log('>>>>>> webpack.config.client.development.js > configuration.entry.main[0]: ', configuration.entry.main[0]);
+// console.log('>>>>>> webpack.config.client.development.js > configuration.entry.main[1]: ', configuration.entry.main[1]);
 
 configuration.mode = 'development',
 

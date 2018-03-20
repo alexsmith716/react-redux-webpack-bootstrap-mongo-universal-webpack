@@ -11,6 +11,6 @@
     "transform-class-properties",
     "transform-promise-to-bluebird",
     "transform-decorators-legacy",
-    "transform-react-display-name"
+    "transform-react-display-name",
   ]
 }

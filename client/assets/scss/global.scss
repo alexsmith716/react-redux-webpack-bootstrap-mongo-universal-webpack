@@ -12,12 +12,13 @@ $fa-font-path: "~font-awesome/fonts/";
 
 
 // Original Bootstrap variables
+// @import "~bootstrap/scss/_variables.scss";
 // https://github.com/twbs/bootstrap/issues/25361
 // https://github.com/cmckni3/bootstrap/commit/29172db7e0ee3f68e0feaf09f6076cdbf186f348
 // https://github.com/twbs/bootstrap/pull/25616
-@import "~bootstrap/scss/_functions";
-@import "~bootstrap/scss/_variables";
-@import "~bootstrap/scss/_mixins";
+@import "~bootstrap/scss/_functions.scss";
+// @import "~bootstrap/scss/_variables.scss";
+// @import "~bootstrap/scss/_mixins.scss";
 
 
 // Loaded after bootstrap/variables is loaded and before bootstrap is loaded
