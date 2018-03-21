@@ -9,7 +9,7 @@ const Html = props => {
   
   return (
 
-    <html lang="en">
+    <html lang="en-US">
 
       <head>
         {/* (>>>>>>> META <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<) */}
@@ -48,7 +48,7 @@ const Html = props => {
           />
         )}
         {Object.keys(assets.javascript)
-          .filter(key => key.includes('main') || key.includes('vendor'))
+          .filter(key => key.includes('main') || key.includes('vendor') || key.includes('vendors'))
           .reverse()
           .map(key => <script key={key} src={assets.javascript[key]} />)}
 
