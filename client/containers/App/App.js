@@ -82,12 +82,15 @@ export default class App extends Component {
     return (
       <div>
         <Helmet {...config.app.head} />
-        <nav className="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
-          <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse">
+
+
+        <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+          <a className="navbar-brand" href="#">Navbar</a>
+          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
-          <a className="navbar-brand" href="#">Fixed navbar</a>
-          <div className="collapse navbar-collapse" id="navbarCollapse">
+
+          <div className="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active">
                 <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
@@ -96,14 +99,19 @@ export default class App extends Component {
                 <a className="nav-link" href="#">Link</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link disabled" href="#">Disabled</a>
+                <a className="nav-link" href="#"><span className={`fa fa-headphones ${style1.colorGold}`}></span><span className={`${style1.colorGold}`}>Headphones!</span></a>
               </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#"><span className={`fa fa-headphones ${style1.colorGold}`}>Headphones!!!</span></a>
+              <li className="nav-item dropdown">
+                <a className="nav-link dropdown-toggle" href="http://example.com/" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                <div className="dropdown-menu" aria-labelledby="dropdown01">
+                  <a className="dropdown-item" href="#">Action</a>
+                  <a className="dropdown-item" href="#">Another action</a>
+                  <a className="dropdown-item" href="#">Something else here</a>
+                </div>
               </li>
             </ul>
-            <form className="form-inline mt-2 mt-md-0">
-              <input className="form-control mr-sm-2" placeholder="Search" type="text"></input>
+            <form className="form-inline my-2 my-lg-0">
+              <input className="form-control mr-sm-2" placeholder="Search" aria-label="Search" type="text"></input>
               <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
           </div>
@@ -120,7 +128,8 @@ export default class App extends Component {
           )}
           {renderRoutes(route.routes)}
         </div>
-        <div className={style2.colorPurple}>
+
+        <div className={`${style2.colorPurple}`}>
           Copyright © 2018 · Election App 2018!
         </div>
 
