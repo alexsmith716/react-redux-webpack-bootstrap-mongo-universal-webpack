@@ -29,6 +29,10 @@ $fa-font-path: "~font-awesome/fonts/";
 @import "~font-awesome/scss/font-awesome.scss";
 
 
+// Global App styles
+@import "./app.scss";
+
+
 // Bootstrap 4 configuration:
 // Glyphicons icon font support has been dropped
 // https://v4-alpha.getbootstrap.com/migration/
