@@ -1,15 +1,36 @@
+// Plugins run before Presets.
+// Plugin ordering is first to last.
+// Preset ordering is reversed (last to first).
+
 {
-  "presets": [
-    "react",
-    [
-      "env", 
-    ],
-    "stage-0",
+  "presets":
+  [
+    "env"
   ],
-  "plugins": [
-    "transform-decorators-legacy",
+
+  "plugins":
+  [
     "transform-object-rest-spread",
     "transform-class-properties",
-    "transform-promise-to-bluebird",
-  ],
+    "transform-promise-to-bluebird"
+  ]
 }
+
+
+
+
+// {
+//   "presets": [
+//     "react",
+//     [
+//       "env", 
+//     ],
+//     "stage-0",
+//   ],
+//   "plugins": [
+//     "transform-decorators-legacy",
+//     "transform-object-rest-spread",
+//     "transform-class-properties",
+//     "transform-promise-to-bluebird",
+//   ],
+// }

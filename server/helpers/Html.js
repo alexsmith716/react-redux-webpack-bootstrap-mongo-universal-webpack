@@ -45,12 +45,12 @@ const Html = props => {
           <script
             dangerouslySetInnerHTML={{ __html: `window.__data=${serialize(store.getState())};` }}
             charSet="UTF-8"
-          />
+          ></script>
         )}
         {Object.keys(assets.javascript)
           .filter(key => key.includes('main') || key.includes('vendor') || key.includes('vendors'))
           .reverse()
-          .map(key => <script key={key} src={assets.javascript[key]} />)}
+          .map(key => <script key={key} src={assets.javascript[key]}></script>)}
 
       </body>
     </html>

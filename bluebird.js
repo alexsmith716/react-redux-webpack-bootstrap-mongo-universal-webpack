@@ -17,3 +17,5 @@ require('bluebird').config(bluebird_options)
 // Set `bluebird` as the default `Promise` implementation
 // inside 3rd party libraries using `babel-runtime`.
 require('babel-runtime/core-js/promise').default = require('bluebird')
+
+console.log('>>>>>>>>>>>>>>>> BLUEBIRD <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
