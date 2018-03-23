@@ -4,8 +4,9 @@ import application_configuration from '../configuration';
 
 const configuration = base_configuration({ development: true, cssBundle: true });
 const path = require('path');
-
 const project_folder = path.resolve(__dirname, '..');
+
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 // https://webpack.js.org/guides/development/#source-maps
 // The default `source-map` `devtool` gives better
@@ -41,8 +42,14 @@ configuration.plugins.push(
   // Prints more readable module names in the browser console on HMR updates
   new webpack.NamedModulesPlugin(),
 
-  // // Extracts common javascript into a separate file
-  // new webpack.optimize.CommonsChunkPlugin('common', 'common.[hash].js')
+  new BundleAnalyzerPlugin({
+    analyzerMode: 'server',
+    analyzerPort: 8888,
+    defaultSizes: 'parsed',
+    openAnalyzer: false,
+    generateStatsFile: false
+  }),
+
 );
 
 // Enable webpack development server
