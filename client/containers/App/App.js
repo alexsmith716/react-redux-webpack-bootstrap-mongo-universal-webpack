@@ -13,8 +13,8 @@ import config from '../../../server/config';
 
 //import './App.scss';
 //import './styles.css';
-import style1 from './App.scss';
-import style2 from './styles.css';
+import AppScss from './AppScss.scss';
+import AppCss from './AppCss.css';
 
 @asyncConnect([
   {
@@ -83,7 +83,6 @@ export default class App extends Component {
       <div>
         <Helmet {...config.app.head} />
 
-
         <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
           <a className="navbar-brand" href="#">Navbar</a>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -99,7 +98,7 @@ export default class App extends Component {
                 <a className="nav-link" href="#">Link</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#"><span className={`fa fa-headphones ${style1.colorGold}`}></span><span className={`${style1.colorGold}`}>Headphones!</span></a>
+                <a className="nav-link" href="#"><span className={`fa fa-headphones ${AppScss.colorGold}`}></span><span className={`${AppScss.colorGold}`}>Headphones!</span></a>
               </li>
               <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" href="http://example.com/" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
@@ -129,7 +128,7 @@ export default class App extends Component {
           {renderRoutes(route.routes)}
         </div>
 
-        <div className={`${style2.colorPurple}`}>
+        <div className={`${AppCss.colorPurple}`}>
           Copyright © 2018 · Election App 2018!
         </div>
 
