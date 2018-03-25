@@ -1,4 +1,7 @@
 
+/public/assets
+/public/server
+
 node_modules/
 log/
 logs/
