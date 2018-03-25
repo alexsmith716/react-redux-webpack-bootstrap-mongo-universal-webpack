@@ -1,6 +1,6 @@
 {
-  "short_name": "react-redux-webpack-bootstrap-mongo",
-  "name": "react-redux-webpack-bootstrap-mongo",
+  "short_name": "ElectionApp2018!",
+  "name": "react-redux-webpack-bootstrap-mongo-universal-webpack",
   "icons": [
     {
       "src": "launcher-icon-2x.png",
@@ -21,6 +21,6 @@
   "start_url": "/",
   "display": "standalone",
   "orientation": "landscape",
-  "theme_color": "#3677dd",
-  "background_color": "#3677dd"
+  "theme_color": "#87CEFF",
+  "background_color": "#87CEFF"
 }

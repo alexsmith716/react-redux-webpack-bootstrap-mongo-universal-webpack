@@ -12,7 +12,42 @@ const GuestHomepage = () => {
   //const imgThumb6 = require('./img/portfolio/thumbnails/6.jpg');
 
   return (
-    <div>GuestHomepage!!!!: ThisGreatApp!! is all about people sharing their favorite novelties across America. Aut tenetur sit quam aliquid quia dolorum voluptate. Numquam itaque et hic reiciendis. Et eligendi quidem officia maiores. Molestiae ex sed vel architecto nostrum. Debitis culpa omnis perspiciatis vel eum. Vitae doloremque dolor enim aut minus. Possimus quaerat enim voluptatibus provident. Unde commodi ipsum voluptas ut velit. Explicabo voluptas at alias voluptas commodi. Illum et nihil ut nihil et. Voluptas iusto sed facere maiores.</div>
+    <div>
+      <main role="main">
+
+        <div className="jumbotron">
+          <div className="container">
+            <h1 className="display-3">Hello, world!</h1>
+            <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+            <p><a className="btn btn-primary btn-lg" href="#" role="button">Learn more »</a></p>
+          </div>
+        </div>
+
+        <div className="container">
+          <div className="row">
+            <div className="col-md-4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+              <p><a className="btn btn-secondary" href="#" role="button">View details »</a></p>
+            </div>
+            <div className="col-md-4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+              <p><a className="btn btn-secondary" href="#" role="button">View details »</a></p>
+            </div>
+            <div className="col-md-4">
+              <h2>Heading</h2>
+              <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper.Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+              <p><a className="btn btn-secondary" href="#" role="button">View details »</a></p>
+            </div>
+          </div>
+
+          <hr/>
+
+        </div>
+
+      </main>
+    </div>
   );
 };
 

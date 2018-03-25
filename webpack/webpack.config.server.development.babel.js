@@ -9,6 +9,7 @@ const publicPath = configuration.output.publicPath;
 
 configuration.mode = 'development',
 
+// Get all statics from webpack development server
 configuration.output.publicPath = `http://${settings.webpack.devserver.host}:${settings.webpack.devserver.port}${configuration.output.publicPath}`;
 
 console.log('>>>>>> webpack.config.server.development.babel.js > configuration.output.publicPath: ', configuration.output.publicPath);

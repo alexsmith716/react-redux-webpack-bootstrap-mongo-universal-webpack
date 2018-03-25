@@ -83,7 +83,7 @@ export default class App extends Component {
       <div>
         <Helmet {...config.app.head} />
 
-        <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
           <a className="navbar-brand" href="#">Navbar</a>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
@@ -101,7 +101,7 @@ export default class App extends Component {
                 <a className="nav-link" href="#"><span className={`fa fa-headphones ${AppScss.colorGold}`}></span><span className={`${AppScss.colorGold}`}>Headphones!</span></a>
               </li>
               <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" href="http://example.com/" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                <a className="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
                 <div className="dropdown-menu" aria-labelledby="dropdown01">
                   <a className="dropdown-item" href="#">Action</a>
                   <a className="dropdown-item" href="#">Another action</a>
@@ -128,9 +128,10 @@ export default class App extends Component {
           {renderRoutes(route.routes)}
         </div>
 
-        <div className={`${AppCss.colorPurple}`}>
-          Copyright © 2018 · Election App 2018!
-        </div>
+
+        <footer className="container" className={`container ${AppCss.colorPurple}`}>
+          <p>Copyright © 2018 · Election App 2018!</p>
+        </footer>
 
       </div>
     );
