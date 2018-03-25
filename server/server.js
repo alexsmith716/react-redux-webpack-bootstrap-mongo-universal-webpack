@@ -10,11 +10,7 @@ import morgan from 'morgan';
 import path from 'path';
 import http from 'http';
 import favicon from 'serve-favicon';
-import locale from 'locale';
-// import webpack from 'webpack';
-// import webpackConfig from '../webpack.config.dev.js';
-// import webpackDevMiddleware from 'webpack-dev-middleware';
-// import webpackHotMiddleware from 'webpack-hot-middleware';
+// import locale from 'locale';
 import dotenv from 'dotenv';
 import apiClient from './helpers/apiClient';
 import serverConfig from './config';
@@ -87,12 +83,6 @@ dotenv.config();
 
 // #########################################################################
 
-// https://nodejs.org/dist/latest-v9.x/docs/api/process.html
-// https://nodejs.org/api/process.html#process_event_unhandledrejection
-// http://2ality.com/2016/04/unhandled-rejections.html
-// 'unhandledRejection' event is emitted whenever a Promise is rejected
-// and no error handler is attached to the promise
-
 process.on('unhandledRejection', (error, promise) => {
   console.error('>>>>>> server > Unhandled Rejection at:', promise, 'reason:', error);
 });
@@ -129,12 +119,11 @@ export default function (parameters) {
   
   app.use(compression());
   
-  // app.use('/public', express.static(path.join(__dirname, '../public')));
-  app.use('/assets', express.static(path.join(__dirname, '../build/assets')));
-  // app.use(favicon(path.join(__dirname, '../public/static/favicon', 'favicon.ico')));
-  
-  app.get('/manifest.json', (req, res) => res.sendFile(path.join(__dirname, '../public/static/manifest/manifest.json')));
-  
+  app.use('/public', express.static(path.join(__dirname, '../public')));
+  app.use(favicon(path.join(__dirname, '../static/favicon', 'favicon.ico')));
+
+  app.get('/manifest.json', (req, res) => res.sendFile(path.join(__dirname, '../static/manifest/manifest.json')));
+
   // #########################################################################
   
   // production +++++++++++++++++++++++++++++++

@@ -49,8 +49,10 @@ module.exports = {
   },
 
   output: {
-    path: path.resolve(rootPath, 'build/assets'),
+    path: path.resolve(__dirname, '../public/assets'),
+    // the target directory for all output files - absolute path
     publicPath: '/assets/',
+    // the url to the output directory resolved relative to the HTML page
     filename: '[name].[hash].js',
     chunkFilename: '[name].[hash].js',
     // chunkFilename: '[name].[chunkhash].js',

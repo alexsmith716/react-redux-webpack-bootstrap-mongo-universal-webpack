@@ -14,6 +14,7 @@ import routes from './routes';
 import isOnline from '../server/utils/isOnline';
 
 // import './assets/scss/global.scss';
+// export { default as icon } from '../assets/static/favicon/favicon.ico'
 
 const offlinePersistConfig = {
   storage: localForage,

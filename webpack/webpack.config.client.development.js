@@ -75,6 +75,8 @@ configuration.output.publicPath = `http://${application_configuration.webpack.de
 //configuration.optimization.splitChunks.minSize = 0;
 //configuration.optimization.occurrenceOrder = true;
 
-console.log('>>>>>> webpack.config.client.development.js > CONFIGURATION !!!!!!: ', configuration);
+// console.log('>>>>>> webpack.config.client.development.js > CONFIGURATION !!!!!!: ', configuration);
+
+console.log('>>>>>> webpack.config.client.development.js > configuration.output.publicPath: ', configuration.output.publicPath);
 
 export default configuration;
