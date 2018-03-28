@@ -15,7 +15,6 @@ import AppScss from './styles/AppScss.scss';
 import AppCss from './styles/AppCss.css';
 
 // https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/SVG_and_CSS
-// possibly link svg into scss
 import iconBar36 from './svg/icon-bar-36.svg';
 
 @asyncConnect([
@@ -73,9 +72,8 @@ export default class App extends Component {
   //   }
   // }
   // <span className="navbar-toggler-icon"></span>
-
   // <img src="data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjNzc3Nzc3IiBoZWlnaHQ9IjMyIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIzMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz4KICAgIDxwYXRoIGQ9Ik0zIDE4aDE4di0ySDN2MnptMC01aDE4di0ySDN2MnptMC03djJoMThWNkgzeiIvPgo8L3N2Zz4=" alt="Nav Menu">
-
+  // <img src={iconBar36} alt="Nav Menu"/>
 
 
   handleLogout = event => {
@@ -84,8 +82,10 @@ export default class App extends Component {
   };
 
   render() {
+
     const { notifs, route } = this.props;
     console.log('>>>>>>>>>>>>> APP.JS > render() <<<<<<<<<<<<<<');
+    
     return (
       <div>
         <Helmet {...config.app.head} />
@@ -93,7 +93,7 @@ export default class App extends Component {
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
           <a className="navbar-brand" href="#">Navbar</a>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-            <img src={iconBar36}/>
+            <img src={iconBar36} alt="Nav Menu"/>
           </button>
 
           <div className="collapse navbar-collapse" id="navbarsExampleDefault">

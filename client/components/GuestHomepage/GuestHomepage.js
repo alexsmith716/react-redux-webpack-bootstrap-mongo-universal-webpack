@@ -1,21 +1,15 @@
 import React from 'react';
 //import PortfolioBox from '../PortfolioBox/PortfolioBox';
 //import ServiceBox from '../ServiceBox/ServiceBox';
+import GuestHomepageScss from './GuestHomepage.scss';
 
 const GuestHomepage = () => {
-  //const styles = require('./GuestHomepage.scss');
-  //const imgThumb1 = require('./img/portfolio/thumbnails/1.jpg');
-  //const imgThumb2 = require('./img/portfolio/thumbnails/2.jpg');
-  //const imgThumb3 = require('./img/portfolio/thumbnails/3.jpg');
-  //const imgThumb4 = require('./img/portfolio/thumbnails/4.jpg');
-  //const imgThumb5 = require('./img/portfolio/thumbnails/5.jpg');
-  //const imgThumb6 = require('./img/portfolio/thumbnails/6.jpg');
 
   return (
     <div>
       <main role="main">
 
-        <div className="jumbotron">
+        <div className={`jumbotron ${GuestHomepageScss.masthead}`}>
           <div className="container">
             <h1 className="display-3">Hello, world!</h1>
             <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
