@@ -1,9 +1,14 @@
 var path = require('path');
 var webpack = require('webpack');
-
 var tether = require('tether');
 
 var rootPath = path.resolve(__dirname, '..');
+
+// var MiniCssExtractPlugin = require("mini-css-extract-plugin");
+// {
+//   loader: MiniCssExtractPlugin.loader,
+// },
+// var rootPath = path.resolve(__dirname, '..');
 // var assetsPath = path.resolve(rootPath, 'public', 'build', 'client');
 // var assetsPath = path.resolve(rootPath, 'public', 'build', 'assets');
 
@@ -53,9 +58,14 @@ module.exports = {
     // the target directory for all output files - absolute path
     publicPath: '/assets/',
     // the url to the output directory resolved relative to the HTML page
+    //filename: '[name]-[contenthash].js',
+    //chunkFilename: '[name]-[contenthash].js',
     filename: '[name].[hash].js',
     chunkFilename: '[name].[hash].js',
-    // chunkFilename: '[name].[chunkhash].js',
+    //filename: "[name].chunkhash.js",
+    //chunkFilename: "[name].chunkhash.js"
+    //filename: '[name].bundle.js',
+    //hunkFilename: '[name].chunk.js',
   },
 
   optimization: {
@@ -74,7 +84,7 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        exclude: [/node_modules/,],
+        exclude: /node_modules/,
         use: [
           { 
             loader: 'babel-loader',
@@ -116,7 +126,7 @@ module.exports = {
             loader: 'css-loader',
             options: {
               modules: true,
-              localIdentName: '[name]__[local]__[hash:base64:5]',
+              localIdentName: '[name]__[local]',
             }
           },
           {
@@ -137,7 +147,7 @@ module.exports = {
             loader: 'css-loader',
             options: {
               modules: true,
-              localIdentName: '[name]__[local]__[hash:base64:5]',
+              localIdentName: '[name]__[local]',
             }
           },
           {
@@ -208,7 +218,7 @@ module.exports = {
 
   resolve: {
     modules: ['client', 'node_modules'],
-    extensions: ['.js', '.jsx', '.scss', '.css', '.json',],
+    extensions: ['.js', '.jsx',],
   },
 
   plugins: []

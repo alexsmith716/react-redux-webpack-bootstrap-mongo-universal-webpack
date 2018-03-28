@@ -1,4 +1,7 @@
 
+.yarnclean
+.yarncleanX
+
 /public/assets
 /public/server
 

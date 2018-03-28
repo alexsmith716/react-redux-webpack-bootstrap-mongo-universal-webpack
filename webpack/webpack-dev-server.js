@@ -1,3 +1,9 @@
+
+// "babel-node ./webpack/webpack-dev-server.js"
+// straight through webpack to webpack.config.js
+// "presets": [env]
+// "plugins": ["transform-object-rest-spread", "transform-class-properties", "transform-promise-to-bluebird"]
+
 import express from 'express';
 import webpack from 'webpack';
 
@@ -15,7 +21,7 @@ const devserver = new express();
 devserver.use(webpack_dev_middleware(compiler, {
   quiet       : true, // don’t output anything to the console
   noInfo      : true, // suppress boring information
-  hot         : true, // adds the HotModuleReplacementPlugin and switch the server to hot mode. Note: make sure you don’t add HotModuleReplacementPlugin twice
+  hot         : false, // adds the HotModuleReplacementPlugin and switch the server to hot mode. Note: make sure you don’t add HotModuleReplacementPlugin twice
   inline      : true, // also adds the webpack/hot/dev-server entry
 
   // You can use it in two modes:
