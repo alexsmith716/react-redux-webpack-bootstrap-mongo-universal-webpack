@@ -6,7 +6,23 @@ import Helmet from 'react-helmet';
 const Html = props => {
   const { assets, content, store } = props;
   const head = Helmet.renderStatic();
-  
+
+  console.log('>>>>>> HTML.JS > Object.keys(assets.styles).length: ', Object.keys(assets.styles).length);
+
+// CHUNKS > ASSETS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// assests: { 
+//   javascript: { 
+//     main: 'http://localhost:3001/assets/main.6956ebbc3a948998205e.js',
+//     vendor: 'http://localhost:3001/assets/vendor.6956ebbc3a948998205e.js',
+//      'vendors~main': 'http://localhost:3001/assets/vendors~main.6956ebbc3a948998205e.js',
+//      'vendors~main~vendor': 'http://localhost:3001/assets/vendors~main~vendor.6956ebbc3a948998205e.js',
+//      'vendors~vendor': 'http://localhost:3001/assets/vendors~vendor.6956ebbc3a948998205e.js' 
+//   },
+//   styles: { 
+//     main: 'http://localhost:3001/assets/main-dcea57ab4f3ff3e58c6b.css' 
+//   } 
+// }
+
   return (
 
     <html lang="en-US">
@@ -34,19 +50,34 @@ const Html = props => {
         {/* (>>>>>>> SCRIPT <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<) */}
         {head.script.toComponent()}
 
-        {/* (will be present only in development mode) */}
+        {assets.styles &&
+          Object.keys(assets.styles).map(style => (
+            <link
+              href={assets.styles[style]}
+              key={style}
+              media="screen, projection"
+              rel="stylesheet"
+              type="text/css"
+              charSet="UTF-8"
+            />
+          ))}
+
         {assets.styles && Object.keys(assets.styles).length === 0 ? (
           <style dangerouslySetInnerHTML={{ __html: '#content{display:none}' }} />
         ) : null}
+
       </head>
       <body>
+
         <div id="content" dangerouslySetInnerHTML={{ __html: content }} ></div>
+
         {store && (
           <script
             dangerouslySetInnerHTML={{ __html: `window.__data=${serialize(store.getState())};` }}
             charSet="UTF-8"
           ></script>
         )}
+
         {Object.keys(assets.javascript)
           .filter(key => key.includes('main') || key.includes('vendor') || key.includes('vendors'))
           .reverse()
