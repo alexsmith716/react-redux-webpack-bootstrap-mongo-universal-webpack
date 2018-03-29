@@ -57,12 +57,6 @@ console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT.JS <<<<<<<<<<<<<<<<<<<<<<<<<<<');
 
   hydrate(routes);
 
-  if (module.hot) {
-    module.hot.accept('./routes', () => {
-      hydrate(require('./routes'));
-    });
-  }
-
   if (process.env.NODE_ENV !== 'production') {
     window.React = React;
     console.log('>>>>>>>>>>>>>>>>>>> CLIENT.JS > process.env.NODE_ENV === DEV!!!');

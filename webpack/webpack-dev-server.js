@@ -36,7 +36,7 @@ devserver.use(webpack_dev_middleware(compiler, {
   stats       : { colors: true }
 }));
 
-devserver.use(webpack_hot_middleware(compiler));
+// devserver.use(webpack_hot_middleware(compiler));
 
 const server = devserver.listen(application_configuration.webpack.devserver.port, (error) => {
   if (error) {

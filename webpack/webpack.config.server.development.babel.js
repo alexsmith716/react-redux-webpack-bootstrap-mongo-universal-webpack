@@ -17,7 +17,6 @@ console.log('>>>>>> webpack.config.server.development.babel.js > configuration.o
 configuration.plugins = configuration.plugins.concat(
     new webpack.IgnorePlugin(/\/iconv-loader$/),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-    // new webpack.NamedModulesPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         CLIENT: JSON.stringify(false),
