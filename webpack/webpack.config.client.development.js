@@ -17,7 +17,8 @@ import application_configuration from '../configuration';
 // CSS styles automatically, i.e. it will extract all CSS styles into one big bundle file: 
 // this is considered the "best practice" for production deployment 
 // and using this option is more convenient then adding 
-// extract-text-webpack-plugin to production webpack configuration manually. 
+// extract-text-webpack-plugin to production webpack configuration manually.
+
 // If upgrading a project from Webpack <= 3 to Webpack >= 4 (or starting fresh with Webpack >= 4) 
 // then extract-text-webpack-plugin should be replaced with mini-css-extract-plugin. 
 // In this case also pass options.useMiniCssExtractPlugin option set to true.
@@ -28,7 +29,7 @@ import application_configuration from '../configuration';
 // which is later added to the webpage's <head/> as a <link rel="stylesheet"/> tag on the server side, 
 // therefore making that "flash of unstyled content" disappear.
 
-const configuration = base_configuration({ development: true, cssBundle: false, useMiniCssExtractPlugin: true })
+const configuration = base_configuration({ development: true, cssBundle: true, useMiniCssExtractPlugin: true })
 
 const path = require('path');
 const project_folder = path.resolve(__dirname, '..');
@@ -88,8 +89,6 @@ configuration.plugins.push(
 
 );
 
-// Enable webpack development server
-
 // >>>> configuration.entry.main.length:  6
 // >>>> configuration.entry.main[0]:  eventsource-polyfill
 
@@ -107,9 +106,13 @@ configuration.entry.main = [
 // network path for static files: fetch all statics from webpack development server
 configuration.output.publicPath = `http://${application_configuration.webpack.devserver.host}:${application_configuration.webpack.devserver.port}${configuration.output.publicPath}`
 
-//configuration.optimization.splitChunks.chunks = 'all';
-//configuration.optimization.splitChunks.minSize = 0;
-//configuration.optimization.occurrenceOrder = true;
+// configuration.optimization.splitChunks.cacheGroups.styles.name = 'styles';
+// configuration.optimization.splitChunks.cacheGroups.styles.test = /\.css$/;
+// configuration.optimization.splitChunks.cacheGroups.styles.chunks = 'all';
+// configuration.optimization.splitChunks.cacheGroups.styles.enforce = true;
+// configuration.optimization.splitChunks.chunks = 'all';
+// configuration.optimization.splitChunks.minSize = 0;
+// configuration.optimization.occurrenceOrder = true;
 
 // console.log('>>>>>> webpack.config.client.development.js > CONFIGURATION !!!!!!: ', configuration);
 

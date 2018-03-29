@@ -26,6 +26,12 @@ var rootPath = path.resolve(__dirname, '..');
 //         test: /[\\/]node_modules[\\/]/,
 //         name: 'vendor',
 //      },
+//      styles: {
+//        test: /\.css$/,
+//        name: 'styles',
+//        chunks: 'all',
+//        enforce: true
+//      }
 //     },
 //   },
 // },
@@ -126,7 +132,7 @@ module.exports = {
             loader: 'css-loader',
             options: {
               modules: true,
-              localIdentName: '[name]__[local]',
+              localIdentName: '[name]__[local]__[hash:base64:5]',
             }
           },
           {
@@ -147,7 +153,7 @@ module.exports = {
             loader: 'css-loader',
             options: {
               modules: true,
-              localIdentName: '[name]__[local]',
+              localIdentName: '[name]__[local]__[hash:base64:5]',
             }
           },
           {

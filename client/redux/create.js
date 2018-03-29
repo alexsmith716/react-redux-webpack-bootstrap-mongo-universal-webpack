@@ -69,13 +69,13 @@ export default function createStore(history, client, data, persistConfig = null)
     store.dispatch({ type: 'PERSIST' });
   }
 
-  if (__DEVELOPMENT__ && module.hot) {
-    console.log('>>>>>>>>> CREATE.JS > YES __DEVELOPMENT__ && module.hot');
-    module.hot.accept('./reducer', () => {
-      const reducer = require('./reducer').default;
-      store.replaceReducer(combineReducers((reducer.default || reducer)(store.asyncReducers)));
-    });
-  }
+  // if (__DEVELOPMENT__ && module.hot) {
+  //   console.log('>>>>>>>>> CREATE.JS > YES __DEVELOPMENT__ && module.hot');
+  //   module.hot.accept('./reducer', () => {
+  //     const reducer = require('./reducer').default;
+  //     store.replaceReducer(combineReducers((reducer.default || reducer)(store.asyncReducers)));
+  //   });
+  // }
   console.log('>>>>>>>>> CREATE.JS > store: ', store);
   return store;
 }
