@@ -90,7 +90,7 @@ export default class App extends Component {
       <div>
         <Helmet {...config.app.head} />
 
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
           <a className="navbar-brand" href="#">Navbar</a>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <img src={iconBar36} alt="Nav Menu"/>
