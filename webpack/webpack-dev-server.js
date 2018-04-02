@@ -8,12 +8,14 @@ import express from 'express';
 import webpack from 'webpack';
 
 import webpack_dev_middleware from 'webpack-dev-middleware';
-import webpack_hot_middleware from 'webpack-hot-middleware';
+// import webpack_hot_middleware from 'webpack-hot-middleware';
 
 import configuration from './webpack.config.client.development';
 import application_configuration from '../configuration';
 
 console.log('>>>>>>>>>>>>>>>> webpack-dev-server.js <<<<<<<<<<<<<<<<<<')
+
+configuration.mode = 'development';
 
 const compiler = webpack(configuration);
 const devserver = new express();

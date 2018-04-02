@@ -38,18 +38,14 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 
 // const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-// https://webpack.js.org/guides/development/#source-maps
-// The default `source-map` `devtool` gives better
-// source maps in Chrome (as per user reports in 2017).
 // configuration.devtool = 'cheap-eval-source-map'
+configuration.devtool = 'source-map';
 
-console.log('>>>>>> webpack.config.client.development.js > configuration.entry: ', configuration.entry);
-console.log('>>>>>> webpack.config.client.development.js > configuration.entry.main.length: ', configuration.entry.main.length);
-console.log('>>>>>> webpack.config.client.development.js > configuration.entry.main[0]: ', configuration.entry.main[0]);
-console.log('>>>>>> webpack.config.client.development.js > configuration.entry.main[1]: ', configuration.entry.main[1]);
-console.log('>>>>>> webpack.config.client.development.js > configuration.entry.main[2]: ', configuration.entry.main[2]);
-
-configuration.mode = 'development',
+// console.log('>>>>>> webpack.config.client.development.js > configuration.entry: ', configuration.entry);
+// console.log('>>>>>> webpack.config.client.development.js > configuration.entry.main.length: ', configuration.entry.main.length);
+// console.log('>>>>>> webpack.config.client.development.js > configuration.entry.main[0]: ', configuration.entry.main[0]);
+// console.log('>>>>>> webpack.config.client.development.js > configuration.entry.main[1]: ', configuration.entry.main[1]);
+// console.log('>>>>>> webpack.config.client.development.js > configuration.entry.main[2]: ', configuration.entry.main[2]);
 
 configuration.plugins.push(
   // Environment variables
@@ -57,7 +53,7 @@ configuration.plugins.push(
     'process.env': {
       CLIENT: JSON.stringify(true),
       NODE_ENV  : JSON.stringify('development'),
-      BABEL_ENV : JSON.stringify('development/client')
+      // BABEL_ENV : JSON.stringify('development/client')
     },
     REDUX_DEVTOOLS : true,
     __CLIENT__: true,
@@ -88,9 +84,6 @@ configuration.plugins.push(
   }),
 
 );
-
-// >>>> configuration.entry.main.length:  6
-// >>>> configuration.entry.main[0]:  eventsource-polyfill
 
 if (configuration.entry.main.length !== 2 && configuration.entry.main[0] !== 'babel-polyfill') {
   throw new Error('>>>>>>>>>>>>>>>>> ERROR!! > Unexpected `main` webpack entry point detected')

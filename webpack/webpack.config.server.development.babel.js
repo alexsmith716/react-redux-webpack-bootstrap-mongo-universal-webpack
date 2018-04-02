@@ -23,11 +23,11 @@ configuration.plugins = configuration.plugins.concat(
         NODE_ENV  : JSON.stringify('development'),
         BABEL_ENV : JSON.stringify('development/server')
       },
-      REDUX_DEVTOOLS : false,
+      REDUX_DEVTOOLS : true,
       __CLIENT__: false,
       __SERVER__: true,
       __DEVELOPMENT__: true,
-      __DEVTOOLS__: false,
+      __DEVTOOLS__: true,
     }),
 );
 

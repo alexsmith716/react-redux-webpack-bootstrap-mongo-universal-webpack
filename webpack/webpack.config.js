@@ -1,16 +1,11 @@
+
+require('babel-polyfill');
 var path = require('path');
 var webpack = require('webpack');
 var tether = require('tether');
 
 var rootPath = path.resolve(__dirname, '..');
-
-// var MiniCssExtractPlugin = require("mini-css-extract-plugin");
-// {
-//   loader: MiniCssExtractPlugin.loader,
-// },
-// var rootPath = path.resolve(__dirname, '..');
-// var assetsPath = path.resolve(rootPath, 'public', 'build', 'client');
-// var assetsPath = path.resolve(rootPath, 'public', 'build', 'assets');
+// var assetsPath = path.resolve(rootPath, 'public', 'assets');
 
 // optimization: {
 //   splitChunks: {
@@ -20,20 +15,26 @@ var rootPath = path.resolve(__dirname, '..');
 //   occurrenceOrder: true
 // },
 // optimization: {
+//   minimize: isDist,
+//   runtimeChunk: false,
 //   splitChunks: {
+//     automaticNameDelimiter: "-",
 //     cacheGroups: {
-//       commons: {
-//         test: /[\\/]node_modules[\\/]/,
+//       styles: {
+//         name: 'bundle',
+//         test: /\.(css|scss)$/,
+//         chunks: 'all',
+//         enforce: true
+//       },
+//       vendor: {
+//         chunks: 'initial',
 //         name: 'vendor',
-//      },
-//      styles: {
-//        test: /\.css$/,
-//        name: 'styles',
-//        chunks: 'all',
-//        enforce: true
-//      }
-//     },
-//   },
+//         priority: -10,
+//         test: /node_modules/        
+//       }
+//     }
+//   }
+// },
 // },
 
 module.exports = {
@@ -76,6 +77,7 @@ module.exports = {
 
   optimization: {
     splitChunks: {
+      automaticNameDelimiter: "-",
       chunks: 'all',
       minSize: 0,
     },
@@ -115,9 +117,6 @@ module.exports = {
           },
           {
             loader: 'sass-loader',
-            options: {
-              sourceMap: true,
-            }
           }
         ]
       },
@@ -224,7 +223,7 @@ module.exports = {
 
   resolve: {
     modules: ['client', 'node_modules'],
-    extensions: ['.js', '.jsx',],
+    extensions: ['.js', '.jsx', '.scss', '.css', '.json',],
   },
 
   plugins: []

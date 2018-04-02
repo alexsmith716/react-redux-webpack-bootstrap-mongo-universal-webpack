@@ -25,6 +25,7 @@ const client = apiClient();
 const dest = document.getElementById('content');
 
 console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT.JS <<<<<<<<<<<<<<<<<<<<<<<<<<<');
+console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT.JS > __DEVTOOLS__ !!!!!: ', __DEVTOOLS__);
 
 (async () => {
   const storedData = await getStoredState(offlinePersistConfig);
@@ -44,18 +45,40 @@ console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT.JS <<<<<<<<<<<<<<<<<<<<<<<<<<<');
 
   const hydrate = _routes => {
     ReactDOM.hydrate(
-      <HotEnabler>
-        <Provider store={store}>
-          <BrowserRouter>
-            <ReduxAsyncConnect routes={_routes} helpers={{ client }} />
-          </BrowserRouter>
-        </Provider>
-      </HotEnabler>
+      <Provider store={store}>
+        <BrowserRouter>
+          <ReduxAsyncConnect routes={_routes} helpers={{ client }} />
+        </BrowserRouter>
+      </Provider>
       , dest
     );
   };
 
   hydrate(routes);
+
+  // const hydrate = _routes => {
+  //   ReactDOM.hydrate(
+  //     <HotEnabler>
+  //       <Provider store={store}>
+  //         <BrowserRouter>
+  //           <ReduxAsyncConnect routes={_routes} helpers={{ client }} />
+  //         </BrowserRouter>
+  //       </Provider>
+  //     </HotEnabler>
+  //     , dest
+  //   );
+  // };
+
+  // hydrate(routes);
+
+  if (module.hot) {
+    console.log('>>>>>>>>>>>>>>>>>>> CLIENT.JS > MODULE.HOT! <<<<<<<<<<<<<<<<<');
+    module.hot.accept('./routes', () => {
+      hydrate(require('./routes'));
+    });
+  } else {
+    console.log('>>>>>>>>>>>>>>>>>>> CLIENT.JS > NO MODULE.HOT! <<<<<<<<<<<<<<');
+  }
 
   if (process.env.NODE_ENV !== 'production') {
     window.React = React;
