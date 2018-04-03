@@ -1,7 +1,10 @@
+@import '../../assets/scss/mixins.scss';
+
 .masthead {
   background-color:#ffffff;
   background-image: url('./img/splashImage-2048x719.jpg');
-  background-size: cover; 
-  background-position: 50% 50%;
-  background-repeat: no-repeat; 
+  background-repeat: no-repeat;
+  background-position: center center;
+  border-radius: 0 !important;
+  @include background-cover;
 }

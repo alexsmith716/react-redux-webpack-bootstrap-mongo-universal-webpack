@@ -1,6 +1,5 @@
 import { createStore as _createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
-// import { createPersistor } from 'redux-persist';
 import { createPersistoid } from 'redux-persist';
 import createMiddleware from './middleware/clientMiddleware';
 import createReducers from './reducer';
@@ -68,18 +67,17 @@ export default function createStore(history, client, data, persistConfig = null)
   if (persistConfig) {
     console.log('>>>>>>>>> CREATE.JS > persistConfig: ', persistConfig);
     console.log('>>>>>>>>> CREATE.JS > persistConfig > store: ', store);
-    // createPersistor(store, persistConfig);
     createPersistoid(store, persistConfig);
     store.dispatch({ type: 'PERSIST' });
   }
 
-  // if (__DEVELOPMENT__ && module.hot) {
-  //   console.log('>>>>>>>>> CREATE.JS > YES __DEVELOPMENT__ && module.hot');
-  //   module.hot.accept('./reducer', () => {
-  //     const reducer = require('./reducer').default;
-  //     store.replaceReducer(combineReducers((reducer.default || reducer)(store.asyncReducers)));
-  //   });
-  // }
+  if (__DEVELOPMENT__ && module.hot) {
+    console.log('>>>>>>>>> CREATE.JS > YES __DEVELOPMENT__ && module.hot');
+    module.hot.accept('./reducer', () => {
+      const reducer = require('./reducer').default;
+      store.replaceReducer(combineReducers((reducer.default || reducer)(store.asyncReducers)));
+    });
+  }
   console.log('>>>>>>>>> CREATE.JS > store: ', store);
   return store;
 }

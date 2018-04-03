@@ -9,7 +9,7 @@ const GuestHomepage = () => {
     <div>
       <main role="main">
 
-        <div className={`jumbotron ${GuestHomepageScss.masthead}`}>
+        <div className={`jumbotron ${GuestHomepageScss.masthead} d-flex`}>
           <div className="container">
             <h1 className="display-3">Isomorphic App!</h1>
             <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
