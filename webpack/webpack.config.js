@@ -214,13 +214,6 @@ module.exports = {
     ]
   },
 
-  //resolve: {
-  //  modules: [
-  //    path.resolve(rootPath, 'client'),
-  //    path.resolve('node_modules')
-  //  ],
-  //},
-
   resolve: {
     modules: ['client', 'node_modules'],
     extensions: ['.js', '.jsx', '.scss', '.css', '.json',],
