@@ -35,7 +35,15 @@ var rootPath = path.resolve(__dirname, '..');
 //     }
 //   }
 // },
-// },
+// splitChunks: {
+//   cacheGroups: {
+//     commons: {
+//       test: /[\\/]node_modules[\\/]
+//       name: "vendors",
+//       chunks: "all"
+//     }
+//   }
+// }
 
 module.exports = {
 
@@ -65,14 +73,11 @@ module.exports = {
     // the target directory for all output files - absolute path
     publicPath: '/assets/',
     // the url to the output directory resolved relative to the HTML page
-    //filename: '[name]-[contenthash].js',
-    //chunkFilename: '[name]-[contenthash].js',
-    filename: '[name].[hash].js',
-    chunkFilename: '[name].[hash].js',
-    //filename: "[name].chunkhash.js",
-    //chunkFilename: "[name].chunkhash.js"
-    //filename: '[name].bundle.js',
-    //hunkFilename: '[name].chunk.js',
+    filename: '[name]-[hash].js',
+    // filename: '[name]-[chunkhash].js',
+    chunkFilename: '[name]-[chunkhash].js',
+    // filename: '[name].[hash].js',
+    // chunkFilename: '[name].[hash].js',
   },
 
   optimization: {
@@ -81,8 +86,21 @@ module.exports = {
       chunks: 'all',
       minSize: 0,
     },
-    occurrenceOrder: true
+    // runtimeChunk: true,
+    occurrenceOrder: true,
   },
+
+  // optimization: {
+  //   splitChunks: {
+  //     cacheGroups: {
+  //       commons: {
+  //         test: /[\\/]node_modules[\\/]/,
+  //         name: 'vendors',
+  //         chunks: 'all'
+  //       }
+  //     }
+  //   }
+  // },
 
   module: {
     // Works around Webpack bug when using `Array.from()` in Babel (`core-js`)

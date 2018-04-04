@@ -13,12 +13,12 @@ import webpack_dev_middleware from 'webpack-dev-middleware';
 import configuration from './webpack.config.client.development';
 import application_configuration from '../configuration';
 
-console.log('>>>>>>>>>>>>>>>> webpack-dev-server.js <<<<<<<<<<<<<<<<<<')
-
 configuration.mode = 'development';
 
 const compiler = webpack(configuration);
 const devserver = new express();
+
+console.log('>>>>>>>>>> webpack-dev-server.js > configuration.output.publicPath: ', configuration.output.publicPath);
 
 devserver.use(webpack_dev_middleware(compiler, {
   quiet       : true, // don’t output anything to the console
@@ -45,7 +45,7 @@ const server = devserver.listen(application_configuration.webpack.devserver.port
     console.error(error.stack || error)
     throw error
   }
-  console.log('>>>>>>>>>>>>>>>> webpack-dev-server.js > Express server Connected: ', server.address());
+  console.log('>>>>>>>>>> webpack-dev-server.js > Express server Connected: ', server.address());
 });
 
 server.on('listening', () => {
@@ -53,5 +53,5 @@ server.on('listening', () => {
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
-  console.log('>>>>>>>>>>>>>>>> webpack-dev-server.js > Express server Listening on: ', bind);
+  console.log('>>>>>>>>>> webpack-dev-server.js > Express server Listening on: ', bind);
 });

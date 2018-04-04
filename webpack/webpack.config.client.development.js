@@ -39,7 +39,8 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 // const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 // configuration.devtool = 'cheap-eval-source-map'
-configuration.devtool = 'source-map';
+// configuration.devtool = 'source-map';
+configuration.devtool = 'inline-source-map';
 
 // console.log('>>>>>> webpack.config.client.development.js > configuration.entry: ', configuration.entry);
 // console.log('>>>>>> webpack.config.client.development.js > configuration.entry.main.length: ', configuration.entry.main.length);
