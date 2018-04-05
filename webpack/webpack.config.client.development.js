@@ -92,7 +92,8 @@ if (configuration.entry.main.length !== 2 && configuration.entry.main[0] !== 'ba
 
 configuration.entry.main = [
   // `webpack-hot-middleware/client?path=http://${application_configuration.webpack.devserver.host}:${application_configuration.webpack.devserver.port}/__webpack_hmr`,
-  path.resolve(project_folder, 'client/assets/scss/global.scss'),
+  // path.resolve(project_folder, 'client/assets/scss/mixins/index.scss'),
+  path.resolve(project_folder, 'client/assets/scss/bootstrap/theme.scss'),
   'babel-polyfill',
   configuration.entry.main[1]
 ]
