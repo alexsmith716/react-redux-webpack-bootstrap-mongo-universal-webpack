@@ -85,18 +85,18 @@ export default class App extends Component {
 
     const { notifs, route } = this.props;
     console.log('>>>>>>>>>>>>> APP.JS > render() <<<<<<<<<<<<<<');
-    
+
     return (
       <div>
         <Helmet {...config.app.head} />
 
-        <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-          <a className="navbar-brand" href="#">Navbar</a>
-          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-            <img src={iconBar36} alt="Nav Menu"/>
-          </button>
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 
-          <div className="collapse navbar-collapse" id="navbarsExampleDefault">
+          <a className="navbar-brand" href="#">Election App</a>
+          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarCollapse">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active">
                 <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
@@ -116,7 +116,7 @@ export default class App extends Component {
                 </div>
               </li>
             </ul>
-            <form className="form-inline my-2 my-md-0">
+            <form className="form-inline my-2 my-lg-0">
               <input className="form-control mr-sm-2" placeholder="Search" aria-label="Search" type="text"></input>
               <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
@@ -135,9 +135,10 @@ export default class App extends Component {
           {renderRoutes(route.routes)}
         </div>
 
-
-        <footer className="container" className={`container ${AppCss.colorPurple}`}>
-          <p>Copyright © 2018 · Election App 2018!</p>
+        <footer className="py-5 bg-dark">
+          <div className="container">
+            <p className={`m-0 text-center ${AppCss.colorCrimson}`}>Copyright &copy; 2018 · Election App 2018!</p>
+          </div>
         </footer>
 
       </div>

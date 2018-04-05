@@ -87,7 +87,7 @@ module.exports = {
       minSize: 0,
     },
     // runtimeChunk: true,
-    occurrenceOrder: true,
+    // occurrenceOrder: true,
   },
 
   // optimization: {
@@ -135,7 +135,7 @@ module.exports = {
           },
           {
             loader: 'sass-loader',
-          }
+          },
         ]
       },
       {
@@ -157,7 +157,15 @@ module.exports = {
           },
           {
             loader: 'sass-loader',
-          }
+          },
+          {
+            loader: 'sass-resources-loader',
+            options: {
+              resources: [
+                path.resolve(rootPath, 'client/assets/scss/mixins/mixins.scss')
+              ],
+            },
+          },
         ]
       },
       {

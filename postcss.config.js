@@ -10,6 +10,8 @@
 //   ]
 // }
 
+// http://cssnext.io/features/
+
 module.exports = {
   use: [
     'postcss-import',
