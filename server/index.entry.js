@@ -3,8 +3,6 @@
 // babel registration (runtime transpilation for node)
 // target 
 
-// require('../bluebird');
-
 require('babel-register');
 // enable runtime transpilation to use ES6/7 in node
 // babel registration (runtime transpilation for node)
