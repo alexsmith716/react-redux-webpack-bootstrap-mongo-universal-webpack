@@ -1,5 +1,3 @@
-// require('../bluebird');
-
 if (module.hot) {
   console.log('>>>>>>>>>>>>>>>> CLIENT >>>>> index.entry.js > MODULE.HOT! <<<<<<<<<<<<<<<<<');
 } else {

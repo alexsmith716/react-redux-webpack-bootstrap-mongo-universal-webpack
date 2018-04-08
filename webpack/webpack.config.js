@@ -1,5 +1,10 @@
+// Base Webpack configuration.
+//
+// Not using ES6 syntax here because this file
+// is not processed with Babel on server side.
+// See `./rendering-service/index.js` for more info.
 
-require('babel-polyfill');
+// require('babel-polyfill');
 var path = require('path');
 var webpack = require('webpack');
 var tether = require('tether');

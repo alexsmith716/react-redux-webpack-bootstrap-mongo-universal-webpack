@@ -1,11 +1,12 @@
 import merge from 'lodash/merge';
-import fs from 'fs';
 
 import default_configuration from './configuration.defaults';
 import development_configuration from './configuration.development';
 // import production_configuration from './configuration.production';
 
 const configuration = merge({}, default_configuration);
+
+module.exports = configuration
 
 if (process.env.NODE_ENV === 'production') {
   merge(configuration, production_configuration)
@@ -29,5 +30,3 @@ if (process.env.CONFIGURATION) {
     console.error(error)
   }
 }
-
-export default configuration;
