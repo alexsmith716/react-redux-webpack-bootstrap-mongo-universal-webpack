@@ -3,7 +3,7 @@
 // babel registration (runtime transpilation for node)
 // target 
 
-require('babel-register');
+// require('babel-register');
 // enable runtime transpilation to use ES6/7 in node
 // babel registration (runtime transpilation for node)
 
@@ -11,6 +11,20 @@ global.__CLIENT__ = false;
 global.__SERVER__ = true;
 global.__DISABLE_SSR__ = false;
 global.__DEVELOPMENT__ = process.env.NODE_ENV !== 'production';
+
+// require('babel-register')({
+//   plugins: [
+//     ['css-modules-transform', {
+//       preprocessCss: '../loaders/sassLoader.js',
+//       generateScopedName: '[name]__[local]__[hash:base64:5]',
+//       extensions: ['.css', '.scss'],
+//     }],
+//   ],
+// });
+
+
+// Babel ES6 polyfill
+require('babel-polyfill')
 
 require('./index');
 

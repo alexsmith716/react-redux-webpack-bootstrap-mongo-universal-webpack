@@ -5,11 +5,34 @@
     "stage-0"
   ],
   "plugins": [
+    "transform-decorators-legacy",
+    "transform-regenerator",
     "transform-runtime",
-    "add-module-exports",
-    "transform-decorators-legacy"
+    "transform-es2015-modules-commonjs",
   ],
 }
+
+// Plugins run before Presets.
+// Plugin ordering is first to last.
+// Preset ordering is reversed (last to first).
+
+// {
+//   "presets": [
+//     "react",
+//     ["env"],
+//     "stage-0"
+//   ],
+//   "plugins": [
+//     "css-modules-transform", {
+//       "preprocessCss": "./loaders/sassLoader.js",
+//       "generateScopedName": "[name]__[local]__[hash:base64:5]",
+//       "extensions": [".css", ".scss"],
+//     },
+//     "transform-runtime",
+//     "add-module-exports",
+//     "transform-decorators-legacy"
+//   ],
+// }
 
 // @babel/preset-react : 
 //    -----------------------------------------------------------------

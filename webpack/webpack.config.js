@@ -1,54 +1,9 @@
-// Base Webpack configuration.
-//
-// Not using ES6 syntax here because this file
-// is not processed with Babel on server side.
-// See `./rendering-service/index.js` for more info.
+const webpack = require('webpack');
+const path = require('path');
+const devMode = process.env.NODE_ENV !== 'production';
+const rootPath = path.resolve(__dirname, '..');
 
-// require('babel-polyfill');
-var path = require('path');
-var webpack = require('webpack');
-var tether = require('tether');
-
-var rootPath = path.resolve(__dirname, '..');
-// var assetsPath = path.resolve(rootPath, 'public', 'assets');
-
-// optimization: {
-//   splitChunks: {
-//     chunks: "all",
-//     minSize: 0,
-//   },
-//   occurrenceOrder: true
-// },
-// optimization: {
-//   minimize: isDist,
-//   runtimeChunk: false,
-//   splitChunks: {
-//     automaticNameDelimiter: "-",
-//     cacheGroups: {
-//       styles: {
-//         name: 'bundle',
-//         test: /\.(css|scss)$/,
-//         chunks: 'all',
-//         enforce: true
-//       },
-//       vendor: {
-//         chunks: 'initial',
-//         name: 'vendor',
-//         priority: -10,
-//         test: /node_modules/        
-//       }
-//     }
-//   }
-// },
-// splitChunks: {
-//   cacheGroups: {
-//     commons: {
-//       test: /[\\/]node_modules[\\/]
-//       name: "vendors",
-//       chunks: "all"
-//     }
-//   }
-// }
+console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> WEBPACK.CONFIG.JS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
 
 module.exports = {
 
@@ -56,7 +11,7 @@ module.exports = {
 
   entry: {
     main: [
-      'babel-polyfill',
+      'bootstrap-loader',
       './client/index.entry.js',
     ],
     vendor: [
@@ -65,11 +20,7 @@ module.exports = {
       'react-redux',
       'react-router',
       'react-router-dom',
-      'redux',
-      'tether',
-      'jquery',
-      'popper.js',
-      'bootstrap',
+      'redux'
     ],
   },
 
@@ -108,8 +59,7 @@ module.exports = {
   // },
 
   module: {
-    // Works around Webpack bug when using `Array.from()` in Babel (`core-js`)
-    // https://github.com/webpack/webpack/issues/5135
+
     strictThisContextOnImports: true,
 
     rules: [
@@ -123,81 +73,48 @@ module.exports = {
         ],
       },
       {
-        test: /\.(scss)$/,
-        include: [ path.resolve(rootPath, 'client/assets/scss') ],
+        test: /\.(scss|css)$/,
         use: [
           {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              modules: false,
-            }
-          },
-          {
-            loader: 'resolve-url-loader',
-          },
-          {
-            loader: 'sass-loader',
-          },
-        ]
-      },
-      {
-        test: /\.(scss)$/,
-        exclude: [ path.resolve(rootPath, 'client/assets/scss') ],
-        use: [
-          {
-            loader: 'style-loader',
+            loader: 'style-loader'
           },
           {
             loader: 'css-loader',
             options: {
               modules: true,
               localIdentName: '[name]__[local]__[hash:base64:5]',
+              // importLoaders: 3,
+              sourceMap: true
             }
           },
           {
             loader: 'postcss-loader',
+            options: {
+              sourceMap: true
+            }
           },
           {
             loader: 'sass-loader',
+            options: {
+              outputStyle: 'expanded',
+              sourceMap: true,
+              sourceMapContents: true
+            }
           },
           {
             loader: 'sass-resources-loader',
             options: {
               resources: [
-                path.resolve(rootPath, 'client/assets/scss/mixins/mixins.scss')
+                path.resolve(__dirname, '../client/assets/scss/mixins/mixins.scss'),
               ],
             },
           },
         ]
       },
       {
-        test: /\.(css)$/,
-        use: [
-          {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              localIdentName: '[name]__[local]__[hash:base64:5]',
-            }
-          },
-          {
-            loader: 'postcss-loader',
-          },
-        ]
-      },
-      {
-        test: /\.(jpg|jpeg|gif|png|svg)$/i,
+        test: /\.(jpg|jpeg|gif|png|svg)$/,
         use: [{
           loader: 'url-loader',
-          options: {
-            limit: 10000,
-          },
         }],
       },
       {
@@ -209,46 +126,10 @@ module.exports = {
           },
         }],
       },
-      {
-        test: /\.json$/,
-        use: [{
-          loader: 'json-loader',
-        }]
-      },
-      {
-        test: '/popper.js/',
-        use: [{
-          loader: 'expose-loader',
-          options: 'popper',
-        },{
-          loader: 'expose-loader',
-          options: 'Popper',
-        }]
-      },
-      {
-        test: '/jquery/',
-        use: [{
-          loader: 'expose-loader',
-          options: 'jQuery',
-        },{
-          loader: 'expose-loader',
-          options: '$',
-        }]
-      },
-      {
-        test: '/tether/',
-        use: [{
-          loader: 'expose-loader',
-          options: 'Tether',
-        }]
-      },
     ]
   },
-
   resolve: {
-    modules: ['client', 'node_modules'],
-    extensions: ['.js', '.jsx', '.scss', '.css', '.json',],
+    extensions: ['.js', '.jsx', '.json',],
   },
-
   plugins: []
 }

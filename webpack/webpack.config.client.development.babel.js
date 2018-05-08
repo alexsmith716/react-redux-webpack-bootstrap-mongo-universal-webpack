@@ -4,6 +4,8 @@ import application_configuration from '../configuration';
 import { clientConfiguration } from 'universal-webpack';
 import settings from './universal-webpack-settings';
 
+console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> WEBPACK.CONFIG.CLIENT.DEVELOPMENT.BABEL.JS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
+
 // With `development: false` all CSS will be extracted into a file
 // named '[name]-[contenthash].css' using `mini-css-extract-plugin`.
 const configuration = clientConfiguration(base_configuration, settings, { development: true });
@@ -26,13 +28,17 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 // configuration.devtool = 'source-map';
 configuration.devtool = 'inline-source-map';
 
+
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// PLUGINS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 configuration.plugins.push(
-  // Environment variables
+
   new webpack.DefinePlugin({
     'process.env': {
       CLIENT: JSON.stringify(true),
       NODE_ENV  : JSON.stringify('development'),
-      // BABEL_ENV : JSON.stringify('development/client')
     },
     REDUX_DEVTOOLS : true,
     __CLIENT__: true,
@@ -41,15 +47,35 @@ configuration.plugins.push(
     __DEVTOOLS__: true,
   }),
 
+  new webpack.ProvidePlugin({
+    $: 'jquery',
+    jQuery: 'jquery',
+    jquery: 'jquery',
+    Popper: ['popper.js', 'default'],
+    Alert: "exports-loader?Alert!bootstrap/js/dist/alert",
+    Button: "exports-loader?Button!bootstrap/js/dist/button",
+    Carousel: "exports-loader?Carousel!bootstrap/js/dist/carousel",
+    Collapse: "exports-loader?Collapse!bootstrap/js/dist/collapse",
+    Dropdown: "exports-loader?Dropdown!bootstrap/js/dist/dropdown",
+    Modal: "exports-loader?Modal!bootstrap/js/dist/modal",
+    Popover: "exports-loader?Popover!bootstrap/js/dist/popover",
+    Scrollspy: "exports-loader?Scrollspy!bootstrap/js/dist/scrollspy",
+    Tab: "exports-loader?Tab!bootstrap/js/dist/tab",
+    Tooltip: "exports-loader?Tooltip!bootstrap/js/dist/tooltip",
+    Util: "exports-loader?Util!bootstrap/js/dist/util",
+  }),
+
   // // Webpack Hot Reload
   // new webpack.HotModuleReplacementPlugin(),
 
   new webpack.NamedModulesPlugin(),
 
   new BundleAnalyzerPlugin({
-    analyzerMode: 'server',
-    analyzerPort: 8888,
-    defaultSizes: 'parsed',
+    analyzerMode: 'static',
+    reportFilename: '../client-development.html',
+    // analyzerMode: 'server',
+    // analyzerPort: 8888,
+    // defaultSizes: 'parsed',
     openAnalyzer: false,
     generateStatsFile: false
   }),
