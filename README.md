@@ -5,6 +5,40 @@
 
 <p>Replaced `universal-webpack` in place of `webpack-isomorphic-tools`. `universal-webpack` promises to generate 'client-side and server-side configuration for Webpack therefore enabling seamless client-side/server-side Webpack builds'. This repo follows on building of 'react-routerV4-redux-webpack-bootstrap-mongo'.</p>
 
+
+
+
+"development:client:rendering-service:build:prepare": "universal-webpack --settings ./webpack/universal-webpack-settings.json prepare",
+
+"dev": "BABEL_DISABLE_CACHE=1 NODE_ENV=development npm-run-all development",
+
+
+
+"development": "npm-run-all --parallel development:client:build development:client:rendering-service:build development:services",
+
+"development:client:build": "webpack-serve --hot --require babel-register --config webpack/webpack.config.client.development.babel.js",
+
+"development:client:rendering-service:build": "webpack --mode development --config ./webpack/webpack.config.server.development.babel.js --watch --colors --display-error-details",
+
+
+"development:client:rendering-service": "nodemon ./server/index.entry.js  --watch ./server --watch ./public/server",
+
+
+"development:client:rendering-service:delayed": "npm-run-all delay development:client:rendering-service",
+
+
+"development:services": "npm-run-all --parallel development:client:rendering-service:delayed",
+
+
+"delay": "node ./sleep 500"
+
+
+
+
+
+
+
+
 #############################################################################
 
 
@@ -51,6 +85,7 @@ https://github.com/css-modules/postcss-modules
 
 ##### Bootstrap > forms.scss
 ##### Feedback icon (requires .glyphicon classes)
+
 `.form-control-feedback {
   position: absolute;
   top: 0;
@@ -63,7 +98,6 @@ https://github.com/css-modules/postcss-modules
   text-align: center;
   pointer-events: none;
 }`
-
 
 #############################################################################
 
@@ -82,83 +116,12 @@ https://github.com/css-modules/postcss-modules
 
 #############################################################################
 
-`Built at: 4/6/2018 2:37:09 PM
-                                      Asset      Size               Chunks             Chunk Names
-       c29770d03d2e95e3ea5899d57c6cfeab.jpg    90 KiB                       [emitted]  
-       93f5dd1f70faac3b2ef5d85434516e0a.jpg  37.1 KiB                       [emitted]  
-       912ec66d7572ff821749319396470bde.svg   434 KiB                       [emitted]  
-                    fontawesome-webfont.ttf   162 KiB                       [emitted]  
-                  fontawesome-webfont.woff2  75.4 KiB                       [emitted]  
-                   fontawesome-webfont.woff  95.7 KiB                       [emitted]  
-       f21bd753d4fb320a83427aa7374ca2e4.jpg  12.7 KiB                       [emitted]  
-                    fontawesome-webfont.eot   162 KiB                       [emitted]  
-              main-dab74fbeb173ef450b31.css   523 KiB                 main  [emitted]  main
-               main-359fdf0b2b53b596c076.js   239 KiB                 main  [emitted]  main
-             vendor-359fdf0b2b53b596c076.js  13.2 KiB               vendor  [emitted]  vendor
-       vendors-main-ac0571d749397113c493.js  4.15 MiB         vendors-main  [emitted]  vendors-main
-vendors-main-vendor-f963aa88f29c8c90df8a.js  1.87 MiB  vendors-main-vendor  [emitted]  vendors-main-vendor
-     vendors-vendor-33fe37223f09244bae08.js  1.63 MiB       vendors-vendor  [emitted]  vendors-vendor
-Entrypoint main = vendors-main-vendor-f963aa88f29c8c90df8a.js vendors-main-ac0571d749397113c493.js main-dab74fbeb173ef450b31.css main-359fdf0b2b53b596c076.js
-Entrypoint vendor = vendors-main-vendor-f963aa88f29c8c90df8a.js vendors-vendor-33fe37223f09244bae08.js vendor-359fdf0b2b53b596c076.js
-[./client/assets/scss/bootstrap/theme.scss] 39 bytes {main} [built]
-[./client/index.entry.js] 282 bytes {main} [built]
-[./node_modules/babel-polyfill/lib/index.js] 833 bytes {vendors-main} [built]
-[./node_modules/bootstrap/dist/js/bootstrap.js] 112 KiB {vendors-vendor} [built]
-[./node_modules/jquery/dist/jquery.js] 265 KiB {vendors-vendor} [built]
-[./node_modules/popper.js/dist/esm/popper.js] 82 KiB {vendors-vendor} [built]
-[./node_modules/react-dom/index.js] 1.33 KiB {vendors-main-vendor} [built]
-[./node_modules/react-redux/es/index.js] 230 bytes {vendors-main-vendor} [built]
-[./node_modules/react-router-dom/es/index.js] 925 bytes {vendors-vendor} [built]
-[./node_modules/react-router/es/index.js] 637 bytes {vendors-vendor} [built]
-[./node_modules/react/index.js] 190 bytes {vendors-main-vendor} [built]
-[./node_modules/redux/es/index.js] 1.05 KiB {vendors-main-vendor} [built]
-[./node_modules/tether/dist/js/tether.js] 55.1 KiB {vendors-vendor} [built]
-   [0] multi ./client/assets/scss/bootstrap/theme.scss babel-polyfill ./client/index.entry.js 52 bytes {main} [built]
-   [5] multi react react-dom react-redux react-router react-router-dom redux tether jquery popper.js bootstrap 136 bytes {vendor} [built]
-    + 1202 hidden modules
-Child mini-css-extract-plugin node_modules/css-loader/index.js??ref--5-1!node_modules/resolve-url-loader/index.js!node_modules/sass-loader/lib/loader.js!client/assets/scss/bootstrap/theme.scss:
-                                   Asset      Size  Chunks             Chunk Names
-                 fontawesome-webfont.eot   162 KiB          [emitted]  
-    912ec66d7572ff821749319396470bde.svg   434 KiB          [emitted]  
-                 fontawesome-webfont.ttf   162 KiB          [emitted]  
-               fontawesome-webfont.woff2  75.4 KiB          [emitted]  
-                fontawesome-webfont.woff  95.7 KiB          [emitted]  
-    Entrypoint mini-css-extract-plugin = *
-    [./node_modules/css-loader/index.js??ref--5-1!./node_modules/resolve-url-loader/index.js!./node_modules/sass-loader/lib/loader.js!./client/assets/scss/bootstrap/theme.scss] ./node_modules/css-loader??ref--5-1!./node_modules/resolve-url-loader!./node_modules/sass-loader/lib/loader.js!./client/assets/scss/bootstrap/theme.scss 199 KiB {mini-css-extract-plugin} [built]
-    [./node_modules/css-loader/lib/css-base.js] 2.21 KiB {mini-css-extract-plugin} [built]
-    [./node_modules/css-loader/lib/url/escape.js] 448 bytes {mini-css-extract-plugin} [built]
-    [./node_modules/font-awesome/fonts/fontawesome-webfont.eot] 69 bytes {mini-css-extract-plugin} [built]
-    [./node_modules/font-awesome/fonts/fontawesome-webfont.eot?v=4.7.0] 69 bytes {mini-css-extract-plugin} [built]
-    [./node_modules/font-awesome/fonts/fontawesome-webfont.svg?v=4.7.0] 82 bytes {mini-css-extract-plugin} [built]
-    [./node_modules/font-awesome/fonts/fontawesome-webfont.ttf?v=4.7.0] 69 bytes {mini-css-extract-plugin} [built]
-    [./node_modules/font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0] 71 bytes {mini-css-extract-plugin} [built]
-    [./node_modules/font-awesome/fonts/fontawesome-webfont.woff?v=4.7.0] 70 bytes {mini-css-extract-plugin} [built]
-Child mini-css-extract-plugin node_modules/css-loader/index.js??ref--6-1!node_modules/postcss-loader/lib/index.js!node_modules/sass-loader/lib/loader.js!node_modules/sass-resources-loader/lib/loader.js??ref--6-4!client/components/GuestHomepage/GuestHomepage.scss:
-                                   Asset      Size  Chunks             Chunk Names
-    93f5dd1f70faac3b2ef5d85434516e0a.jpg  37.1 KiB          [emitted]  
-    Entrypoint mini-css-extract-plugin = *
-    [./client/components/GuestHomepage/img/splashImage-2048x719.jpg] 82 bytes {mini-css-extract-plugin} [built]
-    [./node_modules/css-loader/index.js??ref--6-1!./node_modules/postcss-loader/lib/index.js!./node_modules/sass-loader/lib/loader.js!./node_modules/sass-resources-loader/lib/loader.js??ref--6-4!./client/components/GuestHomepage/GuestHomepage.scss] ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/lib!./node_modules/sass-loader/lib/loader.js!./node_modules/sass-resources-loader/lib/loader.js??ref--6-4!./client/components/GuestHomepage/GuestHomepage.scss 2.19 KiB {mini-css-extract-plugin} [built]
-    [./node_modules/css-loader/lib/css-base.js] 2.21 KiB {mini-css-extract-plugin} [built]
-    [./node_modules/css-loader/lib/url/escape.js] 448 bytes {mini-css-extract-plugin} [built]
-Child mini-css-extract-plugin node_modules/css-loader/index.js??ref--6-1!node_modules/postcss-loader/lib/index.js!node_modules/sass-loader/lib/loader.js!node_modules/sass-resources-loader/lib/loader.js??ref--6-4!client/containers/App/styles/AppScss.scss:
-    Entrypoint mini-css-extract-plugin = *
-    [./node_modules/css-loader/index.js??ref--6-1!./node_modules/postcss-loader/lib/index.js!./node_modules/sass-loader/lib/loader.js!./node_modules/sass-resources-loader/lib/loader.js??ref--6-4!./client/containers/App/styles/AppScss.scss] ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/lib!./node_modules/sass-loader/lib/loader.js!./node_modules/sass-resources-loader/lib/loader.js??ref--6-4!./client/containers/App/styles/AppScss.scss 785 bytes {mini-css-extract-plugin} [built]
-    [./node_modules/css-loader/lib/css-base.js] 2.21 KiB {mini-css-extract-plugin} [built]
-Child mini-css-extract-plugin node_modules/css-loader/index.js??ref--7-1!node_modules/postcss-loader/lib/index.js!client/containers/App/styles/AppCss.css:
-    Entrypoint mini-css-extract-plugin = *
-    [./node_modules/css-loader/index.js??ref--7-1!./node_modules/postcss-loader/lib/index.js!./client/containers/App/styles/AppCss.css] ./node_modules/css-loader??ref--7-1!./node_modules/postcss-loader/lib!./client/containers/App/styles/AppCss.css 487 bytes {mini-css-extract-plugin} [built]
-    [./node_modules/css-loader/lib/css-base.js] 2.21 KiB {mini-css-extract-plugin} [built]`
+`:root { font-size: 16px; }`
 
-#############################################################################
-
-`:root {
-  font-size: 16px;
-}
-1px = .0625rem
-16px = 1rem
-54px = 3.375rem
-50px = 3.125rem`
+* 1px = .0625rem
+* 16px = 1rem
+* 54px = 3.375rem
+* 50px = 3.125rem
 
 #############################################################################
 
