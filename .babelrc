@@ -8,10 +8,12 @@
     "transform-decorators-legacy",
     "transform-regenerator",
     "transform-runtime",
+    "add-module-exports",
     "transform-es2015-modules-commonjs",
   ],
 }
 
+// https://reactjs.org/docs/dom-elements.html
 // Plugins run before Presets.
 // Plugin ordering is first to last.
 // Preset ordering is reversed (last to first).
