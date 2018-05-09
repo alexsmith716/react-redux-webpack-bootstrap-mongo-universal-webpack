@@ -1,8 +1,13 @@
 import webpack from 'webpack';
+import path from 'path';
 import base_configuration from './webpack.config';
 import application_configuration from '../configuration';
 import { clientConfiguration } from 'universal-webpack';
 import settings from './universal-webpack-settings';
+//import CleanWebpackPlugin from 'clean-webpack-plugin';
+
+//const rootPath = path.resolve(__dirname, '..');
+//const assetsPath = path.resolve(rootPath, './public/server');
 
 console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> WEBPACK.CONFIG.CLIENT.DEVELOPMENT.BABEL.JS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
 
@@ -18,9 +23,6 @@ module.exports = configuration;
 // https://github.com/webpack-contrib/webpack-serve/issues/94
 configuration.mode = 'development';
 
-const path = require('path');
-const project_folder = path.resolve(__dirname, '..');
-
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 // https://webpack.js.org/guides/development/#source-maps
@@ -34,6 +36,8 @@ configuration.devtool = 'inline-source-map';
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 configuration.plugins.push(
+
+  // new CleanWebpackPlugin([assetsPath], { root: rootPath }),
 
   new webpack.DefinePlugin({
     'process.env': {
@@ -70,15 +74,15 @@ configuration.plugins.push(
 
   new webpack.NamedModulesPlugin(),
 
-  new BundleAnalyzerPlugin({
-    analyzerMode: 'static',
-    reportFilename: '../client-development.html',
-    // analyzerMode: 'server',
-    // analyzerPort: 8888,
-    // defaultSizes: 'parsed',
-    openAnalyzer: false,
-    generateStatsFile: false
-  }),
+  // new BundleAnalyzerPlugin({
+  //   analyzerMode: 'static',
+  //   reportFilename: '../client-development.html',
+  //   // analyzerMode: 'server',
+  //   // analyzerPort: 8888,
+  //   // defaultSizes: 'parsed',
+  //   openAnalyzer: false,
+  //   generateStatsFile: false
+  // }),
 
 );
 

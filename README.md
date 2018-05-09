@@ -1,42 +1,14 @@
 # react-routerV4-redux-webpack-bootstrap-mongo-universal-webpack
 
 ### Overview:
-<p>Testing react-router v4, redux, webpack, bootstrap, mongo and more.</p>
+Testing react-router v4, redux, webpack, bootstrap, mongo and more.
 
-<p>Replaced `universal-webpack` in place of `webpack-isomorphic-tools`. `universal-webpack` promises to generate 'client-side and server-side configuration for Webpack therefore enabling seamless client-side/server-side Webpack builds'. This repo follows on building of 'react-routerV4-redux-webpack-bootstrap-mongo'.</p>
-
-
+Replaced `universal-webpack` in place of `webpack-isomorphic-tools`. `universal-webpack` promises to generate 'client-side and server-side configuration for Webpack therefore enabling seamless client-side/server-side Webpack builds'. This repo follows on building of 'react-routerV4-redux-webpack-bootstrap-mongo'.
 
 
-"development:client:rendering-service:build:prepare": "universal-webpack --settings ./webpack/universal-webpack-settings.json prepare",
+### Using Bootstrap-Loader ('extract-text-webpack-plugin' NOT 'mini-css-extract-plugin') so now can enable HMR.
 
-"dev": "BABEL_DISABLE_CACHE=1 NODE_ENV=development npm-run-all development",
-
-
-
-"development": "npm-run-all --parallel development:client:build development:client:rendering-service:build development:services",
-
-"development:client:build": "webpack-serve --hot --require babel-register --config webpack/webpack.config.client.development.babel.js",
-
-"development:client:rendering-service:build": "webpack --mode development --config ./webpack/webpack.config.server.development.babel.js --watch --colors --display-error-details",
-
-
-"development:client:rendering-service": "nodemon ./server/index.entry.js  --watch ./server --watch ./public/server",
-
-
-"development:client:rendering-service:delayed": "npm-run-all delay development:client:rendering-service",
-
-
-"development:services": "npm-run-all --parallel development:client:rendering-service:delayed",
-
-
-"delay": "node ./sleep 500"
-
-
-
-
-
-
+### Have to go over (at least most common) Babel plugins !
 
 
 #############################################################################

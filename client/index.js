@@ -87,19 +87,19 @@ console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT.JS > __DEVTOOLS__ !!!!!: ', __DEVTO
     }
   }
 
-  //if (__DEVTOOLS__ && !window.devToolsExtension) {
-  //  console.log('>>>>>>>>>>>>>>>>>>> CLIENT.JS > __DEVTOOLS__ && NO window.devToolsExtension');
-  //  const devToolsDest = document.createElement('div');
-  //  window.document.body.insertBefore(devToolsDest, null);
-  //  const DevTools = require('./containers/DevTools/DevTools');
+  if (__DEVTOOLS__ && !window.devToolsExtension) {
+    console.log('>>>>>>>>>>>>>>>>>>> CLIENT.JS > __DEVTOOLS__ && NO window.devToolsExtension');
+    const devToolsDest = document.createElement('div');
+    window.document.body.insertBefore(devToolsDest, null);
+    const DevTools = require('./containers/DevTools/DevTools');
 
-  //  ReactDOM.hydrate(
-  //    <Provider store={store} key="provider">
-  //      <DevTools />
-  //    </Provider>,
-  //    devToolsDest
-  //  );
-  //}
+    ReactDOM.hydrate(
+      <Provider store={store} key="provider">
+        <DevTools />
+      </Provider>,
+      devToolsDest
+    );
+  }
 
   if (online && !__DEVELOPMENT__ && 'serviceWorker' in navigator) {
     window.addEventListener('load', async () => {

@@ -34,8 +34,6 @@ export default function createStore(history, client, data, persistConfig = null)
   console.log('>>>>>>>>> CREATE.JS > middleware: ', middleware);
   let enhancers = [applyMiddleware(...middleware)];
 
-  console.log('>>>>>>>>> CREATE.JS > __DEVTOOLS__ !!!!!: ', __DEVTOOLS__);
-  
   if (__CLIENT__ && __DEVTOOLS__) {
     console.log('>>>>>>>>> CREATE.JS > YES __CLIENT__ && __DEVTOOLS__1');
     const { persistState } = require('redux-devtools');

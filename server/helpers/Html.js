@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import serialize from 'serialize-javascript';
 import Helmet from 'react-helmet';
 
+// https://reactjs.org/docs/dom-elements.html <<<<<<<<< 'dangerouslySetInnerHTML'
+
 const Html = props => {
   const { assets, content, store } = props;
   const head = Helmet.renderStatic();
@@ -61,10 +63,6 @@ const Html = props => {
               charSet="UTF-8"
             />
           ))}
-
-        {assets.styles && Object.keys(assets.styles).length === 0 ? (
-          <style dangerouslySetInnerHTML={{ __html: '#content{display:none}' }} />
-        ) : null}
 
       </head>
       <body>
