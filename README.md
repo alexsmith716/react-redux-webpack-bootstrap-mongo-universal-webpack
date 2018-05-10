@@ -5,6 +5,15 @@ Testing react-router v4, redux, webpack, bootstrap, mongo and more.
 
 Replaced `universal-webpack` in place of `webpack-isomorphic-tools`. `universal-webpack` promises to generate 'client-side and server-side configuration for Webpack therefore enabling seamless client-side/server-side Webpack builds'. This repo follows on building of 'react-routerV4-redux-webpack-bootstrap-mongo'.
 
+`universal-webpack`:
+
+  * library generates client-side and server-side configuration for Webpack
+  * enables seamless client-side/server-side Webpack builds
+  * The server() configuration takes the client-side Webpack configuration and tunes it a bit for server-side usage
+
+
+
+
 
 ### Using Bootstrap-Loader ('extract-text-webpack-plugin' NOT 'mini-css-extract-plugin') so now can enable HMR.
 
