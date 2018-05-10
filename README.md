@@ -11,6 +11,25 @@ Replaced `universal-webpack` in place of `webpack-isomorphic-tools`. `universal-
 ### Have to go over (at least most common) Babel plugins !
 
 
+### nodemon.json config file:
+
+nodemon will restart node applications when a `.js` JavaScript file changes
+nodemon supports local and global configuration files
+A config file can take any of the command line arguments
+
+Order of Override (IMPORTANT):
+
+   1) command line arguments (package.json)
+   2) local config
+   3) global config
+
+"ignore": [".git","node_modules/"]: "ignore" changes to specific files, directories or file patterns
+"env": {"NODE_ENV": "development"}:  activate in "env" "development"
+
+config options:        https://github.com/remy/nodemon/blob/master/doc/sample-nodemon.md
+nodemon --help config: https://github.com/remy/nodemon/blob/master/doc/cli/config.txt
+
+
 #############################################################################
 
 
