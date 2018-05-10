@@ -30,15 +30,15 @@ module.exports = {
     chunkFilename: '[name].[chunkhash].js',
   },
 
-  optimization: {
-    splitChunks: {
-      automaticNameDelimiter: "-",
-      chunks: 'all',
-      minSize: 0,
-    },
-    // runtimeChunk: true,
-    // occurrenceOrder: true,
-  },
+  // optimization: {
+  //   splitChunks: {
+  //     automaticNameDelimiter: "-",
+  //     chunks: 'all',
+  //     minSize: 0,
+  //   },
+  //   // runtimeChunk: true,
+  //   // occurrenceOrder: true,
+  // },
 
   // optimization: {
   //   splitChunks: {

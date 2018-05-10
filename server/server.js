@@ -170,14 +170,16 @@ export default function (parameters) {
   
   // #########################################################################
   
-  const chunks = parameters.chunks();
-
   // app.use((req, res) => {
-  //   console.log('>>>>>>>>>>>>>>>> SERVER > chunks!!!!!!!!!: ', chunks);
   //   res.status(200).send('SERVER > Response Ended For Testing!!!!!!! Status 200!!!!!!!!!');
   // });
 
+  const chunks = parameters.chunks();
+
   app.use(async (req, res) => {
+
+    const chunks = parameters.chunks();
+    // const chunks = {...parameters.chunks()};
 
     console.log('>>>>>>>>>>>>>>>> SERVER > CHUNKS !!!!!!!!!: ', chunks);
   
