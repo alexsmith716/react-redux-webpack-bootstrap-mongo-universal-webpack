@@ -29,22 +29,22 @@ module.exports = {
     // the target directory for all output files - absolute path
     publicPath: '/assets/',
     // the url to the output directory resolved relative to the HTML page
-    //filename: '[name]-[hash].js',
+    filename: '[name]-[hash].js',
     // filename: '[name]-[chunkhash].js',
-    //chunkFilename: '[name]-[chunkhash].js',
-    filename: '[name].[hash].js',
-    chunkFilename: '[name].[hash].js',
+    chunkFilename: '[name]-[chunkhash].js',
+    //filename: '[name].[hash].js',
+    //chunkFilename: '[name].[hash].js',
   },
 
-  // optimization: {
-  //   splitChunks: {
-  //     automaticNameDelimiter: "-",
-  //     chunks: 'all',
-  //     minSize: 0,
-  //   },
-  //   // runtimeChunk: true,
-  //   // occurrenceOrder: true,
-  // },
+  optimization: {
+    splitChunks: {
+      automaticNameDelimiter: "-",
+      chunks: 'all',
+      minSize: 0,
+    },
+    // runtimeChunk: true,
+    // occurrenceOrder: true,
+  },
 
   // optimization: {
   //   splitChunks: {
@@ -121,9 +121,6 @@ module.exports = {
           loader : 'css-loader',
           options:
           {
-            // The query parameter `importLoaders` allows to configure how many
-            // loaders before css-loader should be applied to @imported resources.
-            // `1` - `postcss-loader`.
             importLoaders : 1,
             sourceMap     : true
           }

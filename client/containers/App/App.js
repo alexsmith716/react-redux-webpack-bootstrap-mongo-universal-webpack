@@ -146,7 +146,7 @@ export default class App extends Component {
           </div>
         </footer>
 
-        <div className="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div className="modal-dialog" role="document">
             <div className="modal-content">
               <div className="modal-header">
@@ -172,6 +172,8 @@ export default class App extends Component {
                 <p className="philosopherboldwebfontFont">This paragraph's '@font-face' is 'philosopher-bold-webfont'.</p>
 
                 <p className="sourcesansproregularwebfontFont">This paragraph's '@font-face' is 'sourcesanspro-regular-webfont'.</p>
+
+                <p className="norwesterFont">This paragraph's '@font-face' is 'norwesterFont'.</p>
 
                 <p className={`colorDarkgrayGlobal ${stylesScss2.montserratLightFontGlobalToLocal}`}>This paragraph's '@font-face' is 'MontserratLight'. It is scoped Global to Local.</p>
 
