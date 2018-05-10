@@ -25,15 +25,11 @@ module.exports = {
   },
 
   output: {
-    path: path.resolve(__dirname, '../public/assets'),
-    // the target directory for all output files - absolute path
-    publicPath: '/assets/',
-    // the url to the output directory resolved relative to the HTML page
-    filename: '[name]-[hash].js',
-    // filename: '[name]-[chunkhash].js',
-    chunkFilename: '[name]-[chunkhash].js',
-    //filename: '[name].[hash].js',
-    //chunkFilename: '[name].[hash].js',
+    path: path.resolve(__dirname, '../public/build/assets'),
+    publicPath: '/build/assets/',
+    filename: '[name].[hash].js',
+    // chunkFilename: '[name].[hash].js'
+    chunkFilename: '[name].[chunkhash].js',
   },
 
   optimization: {
@@ -113,36 +109,45 @@ module.exports = {
       },
       {
         test: /\.(css)$/,
-        use:
-        [{
-          loader: 'style-loader'
-        },
-        {
-          loader : 'css-loader',
-          options:
+        use: [
           {
-            importLoaders : 1,
-            sourceMap     : true
-          }
-        },
-        {
-          loader : 'postcss-loader'
-        }]
+            loader: 'style-loader'
+          },
+          {
+            loader : 'css-loader',
+            options: {
+              modules: true,
+              localIdentName: '[name]__[local]__[hash:base64:5]',
+              importLoaders: 1,
+              sourceMap: true
+            }
+          },
+          {
+            loader : 'postcss-loader'
+          },
+        ]
       },
       {
         test: /\.(jpg|jpeg|gif|png|svg)$/,
-        use: [{
-          loader: 'url-loader',
-        }],
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10000,
+            },
+          },
+        ]
       },
       {
         test: /\.(ttf|eot|woff|woff2)$/,
-        use: [{
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]',
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+            },
           },
-        }],
+        ]
       },
     ]
   },

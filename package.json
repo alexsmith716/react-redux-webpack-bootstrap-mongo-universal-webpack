@@ -10,7 +10,7 @@
     "development:client:rendering-service:build:prepare": "universal-webpack --settings ./webpack/universal-webpack-settings.json prepare",
     "development:client:build": "webpack-serve --hot --require babel-register --config webpack/webpack.config.client.development.babel.js",
     "development:client:rendering-service:build": "webpack --mode development --config ./webpack/webpack.config.server.development.babel.js --watch --colors --display-error-details",
-    "development:client:rendering-service": "nodemon ./server/index.entry.js  --watch ./server --watch ./public/server",
+    "development:client:rendering-service": "nodemon ./server/index.entry.js  --watch ./server --watch ./public/build/server",
     "development:client:rendering-service:delayed": "npm-run-all delay development:client:rendering-service",
     "development:services": "npm-run-all --parallel development:client:rendering-service:delayed",
     "delay": "node ./sleep 500"

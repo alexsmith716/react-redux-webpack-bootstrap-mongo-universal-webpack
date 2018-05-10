@@ -120,9 +120,9 @@ export default function (parameters) {
   app.use(compression());
   
   app.use('/public', express.static(path.join(__dirname, '../public')));
-  app.use(favicon(path.join(__dirname, '../static/favicon', 'favicon.ico')));
+  app.use(favicon(path.join(__dirname, '../../static/favicon', 'favicon.ico')));
 
-  app.get('/manifest.json', (req, res) => res.sendFile(path.join(__dirname, '../static/manifest/manifest.json')));
+  app.get('/manifest.json', (req, res) => res.sendFile(path.join(__dirname, '../../static/manifest/manifest.json')));
 
   // #########################################################################
   

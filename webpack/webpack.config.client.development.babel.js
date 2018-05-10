@@ -4,10 +4,10 @@ import base_configuration from './webpack.config';
 import application_configuration from '../configuration';
 import { clientConfiguration } from 'universal-webpack';
 import settings from './universal-webpack-settings';
-//import CleanWebpackPlugin from 'clean-webpack-plugin';
+import CleanWebpackPlugin from 'clean-webpack-plugin';
 
-//const rootPath = path.resolve(__dirname, '..');
-//const assetsPath = path.resolve(rootPath, './public/server');
+const rootPath = path.resolve(__dirname, '..');
+const assetsPath = path.resolve(rootPath, './public/build');
 
 console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> WEBPACK.CONFIG.CLIENT.DEVELOPMENT.BABEL.JS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
 
