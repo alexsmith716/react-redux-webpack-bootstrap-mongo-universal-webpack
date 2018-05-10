@@ -88,6 +88,9 @@ process.on('unhandledRejection', (error, promise) => {
 });
 
 // #########################################################################
+// server-side bundle (settings.server.output file) is generated from settings.server.input
+// server-side bundle beow:
+// #########################################################################
 
 export default function (parameters) {
 
@@ -119,10 +122,10 @@ export default function (parameters) {
   
   app.use(compression());
   
-  app.use('/public', express.static(path.join(__dirname, '../public')));
-  app.use(favicon(path.join(__dirname, '../../static/favicon', 'favicon.ico')));
-
-  app.get('/manifest.json', (req, res) => res.sendFile(path.join(__dirname, '../../static/manifest/manifest.json')));
+  // app.use('/public', express.static(path.join(__dirname, '../public')));
+  app.use(express.static(path.join(__dirname, '../build/public')));
+  app.use(favicon(path.join(__dirname, '../public/static/favicon', 'favicon.ico')));
+  app.get('/manifest.json', (req, res) => res.sendFile(path.join(__dirname, '../public/static/manifest/manifest.json')));
 
   // #########################################################################
   

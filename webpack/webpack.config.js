@@ -3,8 +3,6 @@ const path = require('path');
 const devMode = process.env.NODE_ENV !== 'production';
 const rootPath = path.resolve(__dirname, '..');
 
-console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> WEBPACK.CONFIG.JS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
-
 module.exports = {
 
   context: rootPath,
@@ -25,8 +23,8 @@ module.exports = {
   },
 
   output: {
-    path: path.resolve(__dirname, '../public/build/assets'),
-    publicPath: '/build/assets/',
+    path: path.resolve(__dirname, '../build/public/assets'),
+    publicPath: '/public/assets/',
     filename: '[name].[hash].js',
     // chunkFilename: '[name].[hash].js'
     chunkFilename: '[name].[chunkhash].js',

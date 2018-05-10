@@ -2,9 +2,6 @@
 .yarnclean
 .yarncleanX
 
-/public/assets
-/public/server
-
 node_modules/
 log/
 logs/
@@ -13,7 +10,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 dist/
-build
+build/bundleAnalyzer
+build/public/assets
+build/server
 coverage
 gh-pages/
 bin/*.json

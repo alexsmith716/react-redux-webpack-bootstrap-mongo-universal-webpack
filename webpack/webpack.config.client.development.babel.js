@@ -4,12 +4,10 @@ import base_configuration from './webpack.config';
 import application_configuration from '../configuration';
 import { clientConfiguration } from 'universal-webpack';
 import settings from './universal-webpack-settings';
-import CleanWebpackPlugin from 'clean-webpack-plugin';
+// import CleanWebpackPlugin from 'clean-webpack-plugin';
 
 const rootPath = path.resolve(__dirname, '..');
 const assetsPath = path.resolve(rootPath, './public/build');
-
-console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> WEBPACK.CONFIG.CLIENT.DEVELOPMENT.BABEL.JS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
 
 // With `development: false` all CSS will be extracted into a file
 // named '[name]-[contenthash].css' using `mini-css-extract-plugin`.
@@ -74,15 +72,15 @@ configuration.plugins.push(
 
   new webpack.NamedModulesPlugin(),
 
-  // new BundleAnalyzerPlugin({
-  //   analyzerMode: 'static',
-  //   reportFilename: '../client-development.html',
-  //   // analyzerMode: 'server',
-  //   // analyzerPort: 8888,
-  //   // defaultSizes: 'parsed',
-  //   openAnalyzer: false,
-  //   generateStatsFile: false
-  // }),
+  new BundleAnalyzerPlugin({
+    analyzerMode: 'static',
+    reportFilename: '../../bundleAnalyzer/client-development.html',
+    // analyzerMode: 'server',
+    // analyzerPort: 8888,
+    // defaultSizes: 'parsed',
+    openAnalyzer: false,
+    generateStatsFile: false
+  }),
 
 );
 
