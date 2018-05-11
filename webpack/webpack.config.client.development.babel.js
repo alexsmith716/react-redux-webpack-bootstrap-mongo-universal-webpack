@@ -4,10 +4,8 @@ import base_configuration from './webpack.config';
 import application_configuration from '../configuration';
 import { clientConfiguration } from 'universal-webpack';
 import settings from './universal-webpack-settings';
-// import CleanWebpackPlugin from 'clean-webpack-plugin';
 
 const rootPath = path.resolve(__dirname, '..');
-const assetsPath = path.resolve(rootPath, './public/build');
 
 // With `development: false` all CSS will be extracted into a file
 // named '[name]-[contenthash].css' using `mini-css-extract-plugin`.
@@ -21,8 +19,6 @@ module.exports = configuration;
 // https://github.com/webpack-contrib/webpack-serve/issues/94
 configuration.mode = 'development';
 
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-
 // https://webpack.js.org/guides/development/#source-maps
 // configuration.devtool = 'cheap-eval-source-map'
 // configuration.devtool = 'source-map';
@@ -35,14 +31,11 @@ configuration.devtool = 'inline-source-map';
 
 configuration.plugins.push(
 
-  // new CleanWebpackPlugin([assetsPath], { root: rootPath }),
-
   new webpack.DefinePlugin({
     'process.env': {
       CLIENT: JSON.stringify(true),
       NODE_ENV  : JSON.stringify('development'),
     },
-    REDUX_DEVTOOLS : true,
     __CLIENT__: true,
     __SERVER__: false,
     __DEVELOPMENT__: true,
@@ -71,16 +64,6 @@ configuration.plugins.push(
   // new webpack.HotModuleReplacementPlugin(),
 
   new webpack.NamedModulesPlugin(),
-
-  new BundleAnalyzerPlugin({
-    analyzerMode: 'static',
-    reportFilename: '../../bundleAnalyzer/client-development.html',
-    // analyzerMode: 'server',
-    // analyzerPort: 8888,
-    // defaultSizes: 'parsed',
-    openAnalyzer: false,
-    generateStatsFile: false
-  }),
 
 );
 
