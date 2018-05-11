@@ -72,7 +72,7 @@ export default function createStore(history, client, data, persistConfig = null)
   if (__DEVELOPMENT__ && module.hot) {
     console.log('>>>>>>>>> CREATE.JS > YES __DEVELOPMENT__ && module.hot');
     module.hot.accept('./reducer', () => {
-      const reducer = require('./reducer').default;
+      let reducer = require('./reducer').default;
       store.replaceReducer(combineReducers((reducer.default || reducer)(store.asyncReducers)));
     });
   }

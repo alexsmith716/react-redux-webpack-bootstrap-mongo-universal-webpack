@@ -1,21 +1,51 @@
-import path from 'path'
-import webpack from 'webpack'
+import path from 'path';
+import webpack from 'webpack';
+import CleanWebpackPlugin from 'clean-webpack-plugin';
+import Visualizer from 'webpack-visualizer-plugin';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
-import { clientConfiguration } from 'universal-webpack'
+import { clientConfiguration } from 'universal-webpack';
 import settings from './universal-webpack-settings';
 import base_configuration from './webpack.config';
 
 // With `development: false` all CSS will be extracted into a file
 // named '[name]-[contenthash].css' using `mini-css-extract-plugin`.
-const configuration = clientConfiguration(base_configuration, settings, { development: false, useMiniCssExtractPlugin: true });
+// css_bundle: '[name].[id].css'
+// const configuration = clientConfiguration(base_configuration, settings, { development: false, useMiniCssExtractPlugin: true });
+const configuration = clientConfiguration(base_configuration, settings, { development: false, css_bundle: '[name].[id].css' });
 
-configuration.devtool = 'source-map';
+const bundleAnalyzerPath = path.resolve(configuration.context, './build/analyzers/bundleAnalyzer');
+const visualizerPath = path.resolve(configuration.context, './build/analyzers/visualizer');
+const assetsPath = path.resolve(configuration.context, './build/public/assets');
+// const serverPath = path.resolve(configuration.context, './build/server');
+
+// configuration.devtool = 'source-map';
+configuration.devtool = 'hidden-source-map';
 
 configuration.plugins.push(
 
+  new CleanWebpackPlugin([bundleAnalyzerPath,visualizerPath,assetsPath], { root: configuration.context }),
+
+  // environment variables
   new webpack.DefinePlugin({
     // Just so that it doesn't throw "_development_tools_ is not defined"
-    REDUX_DEVTOOLS: false
+    __DEVTOOLS__: false,
+  }),
+
+  // https://blog.etleap.com/2017/02/02/inspecting-your-webpack-bundle/
+  new Visualizer({
+    // Relative to the output folder
+    filename: '../../analyzers/visualizer/bundle-stats.html'
+  }),
+
+  new BundleAnalyzerPlugin({
+    analyzerMode: 'static',
+    reportFilename: '../../analyzers/bundleAnalyzer/client-development.html',
+    // analyzerMode: 'server',
+    // analyzerPort: 8888,
+    // defaultSizes: 'parsed',
+    openAnalyzer: false,
+    generateStatsFile: false
   }),
 
 );

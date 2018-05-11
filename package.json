@@ -13,7 +13,10 @@
     "development:client:rendering-service": "nodemon ./server/index.entry.js  --watch ./server --watch ./build/server",
     "development:client:rendering-service:delayed": "npm-run-all delay development:client:rendering-service",
     "development:services": "npm-run-all --parallel development:client:rendering-service:delayed",
-    "delay": "node ./sleep 500"
+    "delay": "node ./sleep 500",
+    "start": "npm run production",
+    "production": "NODE_ENV=production npm-run-all production:client:build",
+    "production:client:build": "webpack --mode production --colors --display-error-details --config ./webpack/webpack.config.client.production.babel.js"
   },
   "dependencies": {
     "async": "^2.6.0",
@@ -108,6 +111,7 @@
     "extract-text-webpack-plugin": "4.0.0-beta.0",
     "file-loader": "^1.1.11",
     "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.4.0",
     "morgan": "^1.9.0",
     "node-sass": "^4.9.0",
     "nodemon": "^1.17.4",

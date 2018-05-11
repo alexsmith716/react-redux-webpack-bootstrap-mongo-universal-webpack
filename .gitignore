@@ -10,7 +10,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 dist/
-build/bundleAnalyzer
+build/analyzers
 build/public/assets
 build/server
 coverage

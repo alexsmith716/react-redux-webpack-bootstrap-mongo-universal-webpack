@@ -121,8 +121,6 @@ export default function (parameters) {
   // #########################################################################
   
   app.use(compression());
-  
-  // app.use('/public', express.static(path.join(__dirname, '../public')));
   app.use(express.static(path.join(__dirname, '../build/public')));
   app.use(favicon(path.join(__dirname, '../public/static/favicon', 'favicon.ico')));
   app.get('/manifest.json', (req, res) => res.sendFile(path.join(__dirname, '../public/static/manifest/manifest.json')));
@@ -174,8 +172,7 @@ export default function (parameters) {
   //   res.status(200).send('SERVER > Response Ended For Testing!!!!!!! Status 200!!!!!!!!!');
   // });
 
-  const chunks = parameters.chunks();
-
+  // React application rendering
   app.use(async (req, res) => {
 
     const chunks = parameters.chunks();
@@ -321,7 +318,7 @@ export default function (parameters) {
     // proxy.ws(req, socket, head);
   });
 
-}
+};
 
 // #########################################################################
 

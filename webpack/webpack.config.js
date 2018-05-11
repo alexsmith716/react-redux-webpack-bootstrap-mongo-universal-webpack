@@ -30,15 +30,15 @@ module.exports = {
     chunkFilename: '[name].[chunkhash].js',
   },
 
-  // optimization: {
-  //   splitChunks: {
-  //     automaticNameDelimiter: "-",
-  //     chunks: 'all',
-  //     minSize: 0,
-  //   },
-  //   // runtimeChunk: true,
-  //   // occurrenceOrder: true,
-  // },
+  optimization: {
+    splitChunks: {
+      automaticNameDelimiter: "-",
+      chunks: 'all',
+      minSize: 0,
+    },
+    // runtimeChunk: 'single', // (true | 'single' | 'multiple') // create chunk which contains only the webpack runtime
+    // occurrenceOrder: true,  // To keep filename consistent between different modes (for example building only)
+  },
 
   // optimization: {
   //   splitChunks: {
