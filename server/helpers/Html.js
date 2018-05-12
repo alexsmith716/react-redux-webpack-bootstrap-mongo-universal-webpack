@@ -9,22 +9,42 @@ const Html = props => {
   const { assets, content, store } = props;
   const head = Helmet.renderStatic();
 
+  console.log('>>>>>> HTML.JS > Object.keys(assets.styles): ', Object.keys(assets.styles));
   console.log('>>>>>> HTML.JS > Object.keys(assets.styles).length: ', Object.keys(assets.styles).length);
+  console.log('>>>>>> HTML.JS > assets.styles: ', assets.styles);
+  console.log('>>>>>> HTML.JS > assets: ', assets);
 
-// CHUNKS > ASSETS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// assests: { 
-//   javascript: { 
-//     main: 'http://localhost:3001/assets/main.6956ebbc3a948998205e.js',
-//     vendor: 'http://localhost:3001/assets/vendor.6956ebbc3a948998205e.js',
-//      'vendors~main': 'http://localhost:3001/assets/vendors~main.6956ebbc3a948998205e.js',
-//      'vendors~main~vendor': 'http://localhost:3001/assets/vendors~main~vendor.6956ebbc3a948998205e.js',
-//      'vendors~vendor': 'http://localhost:3001/assets/vendors~vendor.6956ebbc3a948998205e.js' 
-//   },
-//   styles: { 
-//     main: 'http://localhost:3001/assets/main-dcea57ab4f3ff3e58c6b.css' 
-//   } 
-// }
+  // DEVELOPMENT -----------------------------------------------------------------------------------------
+  // >>>>>> HTML.JS > Object.keys(assets.styles):  []
+  // >>>>>> HTML.JS > Object.keys(assets.styles).length:  0
+  // >>>>>> HTML.JS > assets.styles:  {}
+  // >>>>>> HTML.JS > assets:  { javascript: 
+  //    { main: 'http://localhost:3001/assets/main.de3e0aca178f6704d5c2.js',
+  //      vendor: 'http://localhost:3001/assets/vendor.de3e0aca178f6704d5c2.js',
+  //      'vendors-main': 'http://localhost:3001/assets/vendors-main.28f1e3874b41014ccf7f.js',
+  //      'vendors-main-vendor': 'http://localhost:3001/assets/vendors-main-vendor.a167806953b97bdb28e9.js',
+  //      'vendors-vendor': 'http://localhost:3001/assets/vendors-vendor.28576e1e3d4e1f93aa9f.js' },
+  //   styles: {} }
 
+  // PRODUCTION -------------------------------------------------------------------------------------------
+  // >>>>>> HTML.JS > Object.keys(assets.styles):  [ 'vendors-main', 'main' ]
+  // >>>>>> HTML.JS > Object.keys(assets.styles).length:  2
+  // >>>>>> HTML.JS > assets.styles:  { 'vendors-main': '/public/assets/vendors-main.2.css', main: '/public/assets/main.4.css' }
+  // >>>>>> HTML.JS > assets:
+  // {
+  //   javascript: {
+  //     'vendors-main-vendor': '/public/assets/vendors-main-vendor.e4e111bbca694daa0f88.js',
+  //     'vendors-vendor': '/public/assets/vendors-vendor.b22cefbd3f41edbffaed.js',
+  //     'vendors-main': '/public/assets/vendors-main.c780dc044dba75bba09d.js',
+  //     vendor: '/public/assets/vendor.815980ec1d5a2ba57fde.js',
+  //     main: '/public/assets/main.815980ec1d5a2ba57fde.js'
+  //   },
+  //   styles: {
+  //     'vendors-main': '/public/assets/vendors-main.2.css',
+  //     main: '/public/assets/main.4.css'
+  //   }
+  // }
+  
   return (
 
     <html lang="en-US">
@@ -52,23 +72,26 @@ const Html = props => {
         {/* (>>>>>>> SCRIPT <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<) */}
         {head.script.toComponent()}
 
-        {assets.styles &&
-          Object.keys(assets.styles).map(style => (
-            <link
-              href={assets.styles[style]}
-              key={style}
-              media="screen, projection"
-              rel="stylesheet"
-              type="text/css"
-              charSet="UTF-8"
-            />
-          ))}
+        {/* (>>>>>>> STYLES - will be physically present only in production with 'WETP' || 'MCEP') */}
+        {Object.keys(assets.styles).length > 0 &&
+          Object.keys(assets.styles)
+            .reverse()
+            .map(key => (
+              <link
+                rel="stylesheet"
+                type="text/css"
+                key={key}
+                href={assets.styles[key]}
+              />
+            ))}
 
       </head>
       <body>
 
+        {/* () */}
         <div id="content" dangerouslySetInnerHTML={{ __html: content }} ></div>
 
+        {/* () */}
         {store && (
           <script
             dangerouslySetInnerHTML={{ __html: `window.__data=${serialize(store.getState())};` }}
@@ -76,6 +99,7 @@ const Html = props => {
           ></script>
         )}
 
+        {/* () */}
         {Object.keys(assets.javascript)
           .filter(key => key.includes('main') || key.includes('vendor') || key.includes('vendors'))
           .reverse()

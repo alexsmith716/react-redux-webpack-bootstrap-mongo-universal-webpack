@@ -12,9 +12,6 @@ export default function apiClient(req) {
 
   if (__SERVER__) {
     console.log('> ApiClient.JS || AXIOS > __SERVER__ !!!!!!!!!!!!!!!!!!!!!!!!!!');
-    console.log('> ApiClient.JS || AXIOS > REQ.ip +++++++++: ', req.ip);
-    console.log('> ApiClient.JS || AXIOS > REQ.method +++++++++: ', req.method);
-    console.log('> ApiClient.JS || AXIOS > REQ.url +++++++++: ', req.url);
   } else {
     console.log('> ApiClient.JS || AXIOS > __CLIENT__ !!!!!!!!!!!!!!!!!!!!!!!!!!');
   }

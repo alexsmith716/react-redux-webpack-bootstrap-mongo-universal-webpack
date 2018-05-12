@@ -12,7 +12,6 @@ const rootPath = path.resolve(__dirname, '..');
 const configuration = clientConfiguration(base_configuration, settings, { development: true });
 
 // https://github.com/webpack-contrib/webpack-serve/issues/81#issuecomment-378469110
-// export default const configuration = ...
 module.exports = configuration;
 
 // `webpack-serve` can't set the correct `mode` by itself.
@@ -23,7 +22,6 @@ configuration.mode = 'development';
 // configuration.devtool = 'cheap-eval-source-map'
 // configuration.devtool = 'source-map';
 configuration.devtool = 'inline-source-map';
-
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // PLUGINS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
