@@ -44,6 +44,11 @@ const Html = props => {
   //     main: '/public/assets/main.4.css'
   //   }
   // }
+
+  // {Object.keys(assets.javascript)
+  //   .filter(key => key.includes('main') || key.includes('vendor') || key.includes('vendors'))
+  //   .reverse()
+  //   .map(key => <script key={key} src={assets.javascript[key]}></script>)}
   
   return (
 
@@ -88,10 +93,10 @@ const Html = props => {
       </head>
       <body>
 
-        {/* () */}
+        {/* (>>>>>>> CONTENT <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<) */}
         <div id="content" dangerouslySetInnerHTML={{ __html: content }} ></div>
 
-        {/* () */}
+        {/* (>>>>>>> STORE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<) */}
         {store && (
           <script
             dangerouslySetInnerHTML={{ __html: `window.__data=${serialize(store.getState())};` }}
@@ -99,11 +104,11 @@ const Html = props => {
           ></script>
         )}
 
-        {/* () */}
-        {Object.keys(assets.javascript)
-          .filter(key => key.includes('main') || key.includes('vendor') || key.includes('vendors'))
-          .reverse()
-          .map(key => <script key={key} src={assets.javascript[key]}></script>)}
+        {/* (>>>>>>> JAVASCRIPTS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<) */}
+        {Object.keys(assets.javascript).length > 0 &&
+          Object.keys(assets.javascript)
+            .reverse()
+            .map(key => <script key={key} src={assets.javascript[key]}></script>)}
 
       </body>
     </html>
