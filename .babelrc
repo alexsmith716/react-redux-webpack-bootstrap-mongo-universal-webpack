@@ -25,14 +25,6 @@
 //   * Configure it to only include the polyfills and transforms needed for the browsers you support
 //   * Compiling only what’s needed can make your bundles smaller and your life easier
 
-//
-//    ["env", {
-//      "targets": {
-//        "browsers": ["last 2 versions", "safari >= 7"]
-//      }
-//    }],
-
-
 // https://reactjs.org/docs/dom-elements.html
 // Plugins run before Presets.
 // Plugin ordering is first to last.
